@@ -1,0 +1,18 @@
+{
+  "universal": {
+    "project": "piensadigital",
+    "skipInstall": false,
+    "directory": ".",
+    "http": true
+  },
+  "serverless": {
+    "provider": "firebase",
+    "project": "piensadigital",
+    "skipInstall": false,
+    "directory": ".",
+    "serverless": {
+      "aws": {},
+      "gcloud": {}
+    }
+  }
+}

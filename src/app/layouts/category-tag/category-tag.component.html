@@ -1,0 +1,3 @@
+<div class="categoria" [ngClass]="category_class" *ngIf="post?.subcategory">
+  <a [routerLink]="['/topic', post.subcategory]">{{post.subcategory}}</a>
+</div>

@@ -1,0 +1,15 @@
+<div class="title" data-aos="fade-left" data-aos-duration="500" data-aos-once="true">
+  <h5>Lo más visto</h5>
+</div>
+
+<!--Items-->
+<div class="items" *ngFor="let post of posts$ | async; let i = index">
+  <div class="item" data-aos="fade-left" data-aos-duration="700" data-aos-once="true" >
+    <div class="subtitle">
+      <app-category-tag [post]="post"></app-category-tag>
+      <a [routerLink]="['/post', post.category, post.uid]">
+        <p>{{ post.title }}</p>
+      </a>
+    </div>
+  </div>
+</div>

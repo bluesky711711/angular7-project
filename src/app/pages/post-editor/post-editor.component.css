@@ -1,0 +1,109 @@
+/*EDITOR POST---*/
+.move_edit {
+    transform: translateX(40%);
+}
+
+.container.tags {
+    margin-top: 13rem;
+}
+
+.container.content-slider {
+    margin-top: -30em;
+}
+
+.txt.profile h1, .txt.profile h6, .txt.profile p {
+	margin-bottom: 0;
+}
+
+.txt.profile .content {
+    font-weight: 700;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.txt.profile .profesion {
+	margin-right: 15px;
+}
+
+.contenedor_edit {
+    width: 100%;
+    height: 75px;
+}
+
+.contenido_edit {
+	margin-bottom: 2em;
+}
+
+.title {
+    font-family: Lato!important;
+	font-weight: 700!important;
+    font-size: 4vw!important;
+    color: white!important;
+}
+
+.txt p {
+    color: white;
+    max-width: 60%;
+    font-family: Lato;
+    font-style: italic;
+    letter-spacing: 0;
+    font-size: 15px;
+}
+
+/*PORTADA*/
+.move_edit .articulo-slider {
+    transform: translateX(10em);
+}
+
+/*EDITOR*/
+.ad_letras {
+    font-style: italic;
+    color: #002ed2;
+    position: relative;
+    margin: -12px 0 5rem;
+}
+
+.icon-pd {
+    color: white;
+    background-color: #047ff7;
+    transform: translate(5px,5px);
+    border-radius: 4px;
+    font-size: 20px;
+    padding: 2px 0 0 2px;
+}
+
+/*Media Querys*/
+@media (max-width: 1800px) {
+    .container.tags {
+        margin-top: 15em;
+    }
+}
+
+@media (max-width: 1610px) {
+    .move_edit .articulo-slider {
+        transform: translateX(15em);
+    }
+}
+
+@media (max-width: 1450px) {
+    .move_edit .articulo-slider {
+        transform: translateX(20em);
+    }
+
+    .container.tags {
+        margin-top: 20em;
+    }
+}
+
+@media (max-width: 900px) {
+    .container.tags {
+        margin-top: 23em;
+    }
+}
+
+@media (max-width: 490px) {
+    .container.tags {
+        margin-top: 25em;
+    }
+}
+

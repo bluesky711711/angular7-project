@@ -1,0 +1,100 @@
+<div class="content" *ngIf="editor$ | async as editor">
+
+    <!--DATOS EDITOR-->
+    <div class="container datos_ue">
+        <div class="row">
+
+            <!--Imagen de Perfil-->
+            <div class="col-md-2">
+                <div class="resume-cont profile flex-pd fs" data-aos="fade-in" data-aos-duration="2000" data-aos-once="true">
+                    <div class="avatar">
+                        <img [src]="editor.photoURL">
+                    </div>
+                </div>
+            </div>
+
+            <!--Información Principal-->
+            <div class="col-md-10 info_first">
+
+                <!--Texto -->
+                <div class="profesion">
+                    <h6>{{(editor.position | toPosition | async)?.value}}</h6>
+                </div>
+                <div class="name" data-aos="fade-right" data-aos-duration="700" data-aos-once="true">
+                    <h1>{{editor.displayName}}</h1>
+                    <!-- <p>{{editor.description}}</p> -->
+                    <p class="description_long">{{editor.description_long}}</p>
+                </div>
+                <!-- Datos Extras -->
+                <div class="more_info">
+                    <p class="text_b"><strong>{{ editor.followerCount | toNumber }}</strong> seguidores</p>
+                    <p class="text_b"><strong>{{ editor.visitCount | toNumber }}</strong> vistas</p>
+                </div>
+                <div class="col-md sub_stats flex-pd fs" data-aos="fade-in" data-aos-duration="1100" data-aos-once="true">
+                    <div class="follow">
+                        <div *ngIf="userLogged!==userId">
+                            <button (click)="follow(editor.uid)" *ngIf="followed?.followedId !== editor.uid" class="btn_follow">Seguir</button>
+                            <button (click)="unFollow(editor.uid)" *ngIf="followed?.followedId === editor.uid" class="btn_unfollow">Dejar
+                                de seguir</button>
+                        </div>
+                        <div class="redes">
+                            <div class="red" *ngIf="editor.social?.facebook">
+                                <a [href]="editor.social.facebook"><img src="/assets/img/utils/facebook-logo_blue.png"
+                                        alt="Facebook"></a>
+                            </div>
+                            <div class="red" *ngIf="editor.social?.twitter">
+                                <a [href]="editor.social.twitter"><img src="/assets/img/utils/twitter-logo_blue.png"
+                                        alt="Twitter"></a>
+                            </div>
+                            <div class="red" *ngIf="editor.social?.linkedin">
+                                <a [href]="editor.social.linkedin"><img src="/assets/img/utils/linkedin-logo_blue.png"
+                                        alt="LinkedIn"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- CONTENIDO EDITOR -->
+    <div class="container" id="datos_profile">
+        <div class="row">
+            <div class="modify_wdt">
+                <div class="menu_vertical">
+                    <ul>
+                        <li *ngIf="userLogged===userId">
+                            <a routerLinkActive="active" [routerLink]="['/editor',userId,'foryou']">Para ti</a>
+                        </li>
+                        <li *ngIf="userLogged!==userId" class="desk">
+                            <a routerLinkActive="active" [routerLink]="['/editor',userId,'posts']">Posts</a>
+                        </li>
+                        <li *ngIf="userLogged===userId">
+                            <a routerLinkActive="active" [routerLink]="['/editor',userId,'myposts']">Mis posts</a>
+                        </li>
+                        <li *ngIf="userLogged===userId">
+                            <a routerLinkActive="active" [routerLink]="['/editor',userId,'bookmarks']">Guardados</a>
+                        </li>
+                        <li *ngIf="userLogged===userId">
+                            <a routerLinkActive="active" [routerLink]="['/editor',userId,'follower']">Seguidores</a>
+                        </li>
+                        <li *ngIf="userLogged===userId">
+                            <a routerLinkActive="active" [routerLink]="['/editor',userId,'followed']">Seguidos</a>
+                        </li>
+                        <li *ngIf="userLogged===userId">
+                            <a routerLinkActive="active" [routerLink]="['/topics']">Mis intereses</a>
+                        </li>
+                        <li *ngIf="userLogged===userId">
+                            <a routerLinkActive="active" [routerLink]="['/editor',userId,'config']">Configuración</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div [@routeAnimations]="o.isActivated && o.activatedRoute.routeConfig.path" class="col modify-col">
+                <router-outlet #o="outlet"></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>

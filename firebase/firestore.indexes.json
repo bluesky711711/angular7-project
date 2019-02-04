@@ -1,0 +1,106 @@
+{
+  "indexes": [
+    {
+      "collectionId": "posts",
+      "fields": [
+        { "fieldPath": "homePost", "mode": "ASCENDING" },
+        { "fieldPath": "state", "mode": "ASCENDING" },
+        { "fieldPath": "createdAt", "mode": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionId": "posts",
+      "fields": [
+        { "fieldPath": "recommended", "mode": "ASCENDING" },
+        { "fieldPath": "state", "mode": "ASCENDING" },
+        { "fieldPath": "createdAt", "mode": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionId": "posts",
+      "fields": [
+        { "fieldPath": "category", "mode": "ASCENDING" },
+        { "fieldPath": "createdAt", "mode": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionId": "posts",
+      "fields": [
+        { "fieldPath": "state", "mode": "ASCENDING" },
+        { "fieldPath": "createdAt", "mode": "DESCENDING" },
+        { "fieldPath": "visitCount", "mode": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionId": "users",
+      "fields": [
+        { "fieldPath": "roles.contributor", "mode": "ASCENDING" },
+        { "fieldPath": "visitCount", "mode": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionId": "posts",
+      "fields": [
+        { "fieldPath": "state", "mode": "ASCENDING" },
+        { "fieldPath": "createdAt", "mode": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionId": "bookmarks",
+      "fields": [
+        { "fieldPath": "userId", "mode": "ASCENDING" },
+        { "fieldPath": "createdAt", "mode": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionId": "posts",
+      "fields": [
+        { "fieldPath": "state", "mode": "ASCENDING" },
+        { "fieldPath": "visitCount", "mode": "DESCENDING" },
+        { "fieldPath": "createdAt", "mode": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionId": "posts",
+      "fields": [
+        { "fieldPath": "userId", "mode": "ASCENDING" },
+        { "fieldPath": "createdAt", "mode": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionId": "relationships",
+      "fields": [
+        { "fieldPath": "followedId", "mode": "ASCENDING" },
+        { "fieldPath": "createdAt", "mode": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionId": "relationships",
+      "fields": [
+        { "fieldPath": "followerId", "mode": "ASCENDING" },
+        { "fieldPath": "createdAt", "mode": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionId": "relationships",
+      "fields": [
+        { "fieldPath": "userId", "mode": "ASCENDING" },
+        { "fieldPath": "createdAt", "mode": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionId": "posts",
+      "fields": [
+        { "fieldPath": "tags", "mode": "ARRAY_CONTAINS" },
+        { "fieldPath": "createdAt", "mode": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionId": "posts",
+      "fields": [
+        { "fieldPath": "subcategory", "mode": "ASCENDING" },
+        { "fieldPath": "createdAt", "mode": "DESCENDING" }
+      ]
+    }
+  ]
+}

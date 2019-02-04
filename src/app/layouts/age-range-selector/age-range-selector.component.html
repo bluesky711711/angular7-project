@@ -1,0 +1,7 @@
+<mat-form-field>
+  <mat-select placeholder="Rango de Edad" [(ngModel)]="ageExt" (ngModelChange)="ngChange($event)">
+    <mat-option *ngFor="let age of ages | async" [value]="age.uid">
+      {{age.value}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

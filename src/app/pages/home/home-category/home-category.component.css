@@ -1,0 +1,33 @@
+.resume-cont .detalles p,
+.resume-cont .detalles p a {
+	color: #a9acc3;
+}
+
+/*Título*/
+.first_title {
+    margin-bottom: 20px;
+}
+
+
+/*ScrollDown*/
+.scroll {
+	-webkit-animation: show .7s cubic-bezier(0.250, 0.460, 0.450, 0.940);
+	animation: show .7s cubic-bezier(0.250, 0.460, 0.450, 0.940);
+}
+
+/*Animation*/
+@-webkit-keyframes show {
+	0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@keyframes show {
+	0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@media (max-width: 490px) {
+	.first_title {
+		margin-bottom: 0;
+	}
+}

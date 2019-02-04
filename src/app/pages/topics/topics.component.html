@@ -1,0 +1,33 @@
+<div class="container  content container">
+
+  <div class="row container_title">
+    <div class="col">
+        <h1>Bienvenido</h1>
+        <h5>escoge son tus intereses</h5>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <ng-container *ngFor="let category of topics$ | async; let i = index">
+        <div class="col-md-12"><h3>{{category.value}}</h3></div>
+        <div class="col-md-3 topic-container" *ngFor="let subcategory of category.subcategories; let k = index">
+          <div class="topic_pd unselect" *ngIf="followed[i].subcategories[k].uid !== subcategory.uid" (click)="follow(subcategory.uid)">
+            <div class="topic-img"><img src="/assets/svg/topics/inteligencia_artificial.svg" alt="PiensaDigital"></div>
+            <div class="topic-title">{{subcategory.value}}</div>
+          </div>
+          <div class="topic_pd select" *ngIf="followed[i].subcategories[k].uid === subcategory.uid" (click)="unFollow(subcategory.uid)">
+            <div class="topic-img"><img src="/assets/svg/topics/inteligencia_artificial.svg" alt="PiensaDigital"></div>
+            <div class="topic-title">{{subcategory.value}}</div>
+          </div>
+          <!-- <button (click)="follow(subcategory.uid)" *ngIf="followed[i].subcategories[k].uid !== subcategory.uid" class="btn_tag">{{subcategory.value}}</button>
+          <button (click)="unFollow(subcategory.uid)" *ngIf="followed[i].subcategories[k].uid === subcategory.uid" class="btn_untag">{{subcategory.value}}</button> -->
+        </div>
+      </ng-container>
+
+    <div class="continuar col-md-12">
+      <a routerLink="/">Continuar</a>
+    </div>
+  </div>
+
+</div>

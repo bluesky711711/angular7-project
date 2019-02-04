@@ -1,0 +1,18 @@
+<div class="item" *ngFor="let post of posts$ | async; let i = index">
+  <div class="number"><h5>{{ i + 1}}.</h5></div>
+  <div class="content_item">
+    <div class="subtitle">
+      <p><a [routerLink]="['/post', post.category, post.uid]">{{post.title}}</a></p>
+    </div>
+    <div class="resume-cont flex-pd fs">
+      <div class="avatar">
+          <img [src]="post.user?.photoURL" alt="post.user?.displayName">
+      </div>
+      <div class="detalles">
+        <p><a [routerLink]="['/editor', post.user?.uid, 'posts']">{{post.user?.displayName}}</a> · <a href="#">{{post.createdAt | toDate | amLocale: 'es' | amTimeAgo}}</a></p>
+        <p>{{post.content | toString | toReadTime}}</p>
+      </div>
+    </div>
+  </div>
+
+</div>

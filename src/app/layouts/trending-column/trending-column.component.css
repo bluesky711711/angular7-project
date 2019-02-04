@@ -1,0 +1,84 @@
+.item {
+    display: flex;
+    margin-bottom: 2em;
+    transition: all ease-out .2s;
+}
+
+.item:hover {
+    transform: translateX(5px);
+    transition: all ease-in-out .2s;
+}
+
+.item .number {
+    display: inline-block;
+    width: 100%;
+    max-width: 10%;
+    margin-right: 5%;
+}
+
+.item .content_item {
+    display: inline-block;
+    width: 100%;
+    max-width: 85%;
+}
+
+/*Subtitle*/
+.subtitle p {
+    font-weight: 700;
+    letter-spacing: 0!important;
+    line-height: 25px;
+    margin-bottom: 10px;
+}
+
+.subtitle p a {
+    color: #061050!important;
+}
+
+/*Text*/
+* {
+    color: #5e6071!important;
+}
+
+.number h5 {
+    color: #002ed2!important;
+}
+
+.resume-cont .detalles p {
+    font-size: 11px!important;
+}
+
+@media (max-width: 1500px) {
+    .resume-cont .detalles p {
+        font-size: 10px!important;
+    }
+}
+
+@media (max-width: 800px) {
+    .subtitle p a {
+        font-size: 23px;
+    }
+
+    .resume-cont .detalles p {
+        font-size: 11px!important;
+    }
+
+    .number h5 {
+        padding-left: 10px;
+    }
+}
+
+@media (max-width: 490px) {
+    .subtitle p a {
+        font-size: 20px;
+        line-height: 22px;
+        letter-spacing: -1px;
+    }
+    
+    .resume-cont {
+        margin-top: -5px;
+    }
+
+    .resume-cont .detalles p {
+        font-size: 8px!important;
+    }
+}

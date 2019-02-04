@@ -1,0 +1,102 @@
+.swiper-container {
+  position: absolute;
+  right: 0;
+  left: 0;
+}
+
+#swipe_destacados {
+    transform: translateX(10px);
+}
+
+* {
+    transition: all ease-in-out .2s !important;
+}
+.articulo h5 a {
+	font-family: Lato!important;
+	color: white;
+}
+
+.articulo .content {
+    width: 100%;
+    padding: 25px;
+    position: absolute;
+    bottom: 0;
+}
+
+.articulo:hover .content {
+    transform: translateY(-10px);
+}
+
+.articulo .gradient_bg {
+	background: rgba(255,255,255,0);
+	background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(0,0,0,0.8) 100%);
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,0)), color-stop(100%, rgba(0,0,0,0.8)));
+	background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(0,0,0,0.8) 100%);
+	background: -o-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(0,0,0,0.8) 100%);
+	background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(0,0,0,0.8) 100%);
+	position: absolute;
+	width: 100%;
+    height: 100%;
+    top: 0;
+}
+
+.articulo, #content_rec .ng-star-inserted {
+    width: 100%;
+    height: 350px;
+    position: relative;
+}
+
+.articulo:hover .gradient_bg {
+	background: rgba(255,255,255,0);
+	background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(0,0,0,1) 100%);
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,0)), color-stop(100%, rgba(0,0,0,1)));
+	background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(0,0,0,1) 100%);
+	background: -o-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(0,0,0,1) 100%);
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(0,0,0,1) 100%);
+}
+
+#content_rec .ng-star-inserted {
+    max-width: 50%;
+    display: inline-block;
+}
+
+#content_rec .ng-star-inserted:first-child {
+    max-width: 100%;
+    display: block;
+}
+
+/*Imagen*/
+.img_inside {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.articulo .img_inside img {
+    width: auto;
+    height: 100%;
+    opacity: 1;
+    position: absolute;
+}
+
+#content_rec .ng-star-inserted:first-child .articulo .img_inside img {
+    width: auto;
+    height: 100%;
+}
+
+/*RESPONSIVE*/
+@media (max-width: 800px) {
+    #content_rec .ng-star-inserted {
+        max-width: 100%;
+        display: block;
+    }
+
+    .articulo, #content_rec .ng-star-inserted {
+        max-height: 250px;
+    }
+}

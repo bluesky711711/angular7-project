@@ -1,0 +1,7 @@
+#background_error{
+    position: absolute;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+}

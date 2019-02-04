@@ -1,0 +1,167 @@
+<div *ngIf="auth.user$ | async; then authenticated else guest"></div>
+<ng-template #authenticated>
+  <div class="container menu_mobile mobile" *ngIf="auth.user$ | async as user">
+    <div class="head">
+      <div class="img_profile element">
+        <div class="image">
+          <img [src]="user?.photoURL" alt="foto perfil">
+        </div>
+        <h4 class="name">Hola, {{ user.displayName | toFirstname }}</h4>
+      </div>
+      <div class="exit element" (click)="hideMenu()">
+        <img src="/assets/svg/exit_icon.svg" alt="Salir">
+      </div>
+    </div>
+  
+    <div class="container_menu">
+      <div class="menu_vertical">
+        <ul>
+          <li class="ani1">
+            <a routerLinkActive="active" [routerLink]="['/home/foryou']">Para ti</a>
+          </li>
+          <li class="ani2">
+            <a [class.active]="router.isActive('home', true)" [routerLink]="['']">Lo último</a>
+          </li>
+          <li class="item-menu ani3">
+            <a routerLinkActive="active" routerLink="/home/tecnologia">Tecnología</a>
+          </li>
+          <li class="item-menu ani4">
+            <a routerLinkActive="active" routerLink="/home/emprendimiento">Emprendimiento</a>
+          </li>
+          <li class="item-menu ani5">
+            <a routerLinkActive="active" routerLink="/home/startups">Startups</a>
+          </li>
+          <li class="item-menu ani6">
+            <a routerLinkActive="active" routerLink="/home/liderazgo">Liderazgo</a>
+          </li>
+          <li class="item-menu ani7">
+            <a routerLinkActive="active" routerLink="/about-us">Nosotros</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  
+    <div class="submenu_mobile">
+  
+      <div class="bookmarks item_sub">
+        <a [routerLink]="['/user', user.uid, 'bookmarks']">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 45 45">
+          <path fill-rule="evenodd" fill="rgb(27, 50, 205)" d="M23.457,0.009 L2.543,0.009 L0.000,0.009 L0.000,2.582 L0.000,7.823 L0.000,10.396 L0.000,42.985 L2.543,42.985 L13.000,28.203 L23.457,42.985 L26.000,42.985 L26.000,10.396 L26.000,7.823 L26.000,2.582 L26.000,0.009 L23.457,0.009 ZM23.457,39.390 L14.272,26.405 L11.728,26.405 L2.543,39.390 L2.543,10.396 L23.457,10.396 L23.457,39.390 ZM23.457,7.823 L2.543,7.823 L2.543,2.582 L23.457,2.582 L23.457,7.823 Z" />
+        </svg>
+        <p>Guardados</p>
+        </a>
+      </div>
+      <div class="following item_sub">
+        <a [routerLink]="['/user', user.uid, 'followed']">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 45 45">
+          <path fill-rule="evenodd" fill="rgb(27, 50, 205)" d="M20.140,17.860 L20.140,0.008 L17.866,0.008 L17.866,17.860 L0.014,17.860 L0.014,20.134 L17.866,20.134 L17.866,37.987 L20.140,37.987 L20.140,20.134 L37.992,20.134 L37.992,17.860 L20.140,17.860 Z" />
+        </svg>
+        <p>Seguidos</p>
+        </a>
+      </div>
+      <div class="tags item_sub">
+        <a [routerLink]="['/topics']">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 45 45">
+          <path fill-rule="evenodd" fill="rgb(27, 50, 205)" d="M41.009,17.562 L41.009,17.564 L41.008,17.564 L17.567,41.007 L16.163,39.603 L16.169,39.597 L1.442,24.796 L1.397,24.840 L-0.006,23.436 L0.042,23.388 L-0.006,23.340 L1.397,21.936 L1.445,21.985 L23.439,-0.011 L23.441,-0.008 L41.009,-0.008 L41.009,17.557 L41.012,17.560 L41.009,17.562 ZM39.024,1.977 L24.259,1.977 L2.845,23.392 L17.573,38.193 L39.024,16.740 L39.024,1.977 ZM36.540,8.454 L32.224,8.454 L32.224,4.138 L36.540,4.138 L36.540,8.454 Z" />
+        </svg>
+        <p>Mis intereses</p>
+        </a>
+      </div>
+      <!-- <div class="notification item_sub">
+            <svg  xmlns="http://www.w3.org/2000/svg"xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 45 45">
+           <path fill-rule="evenodd"  fill="rgb(27, 50, 205)"
+            d="M34.572,37.002 L34.572,17.657 C34.572,10.890 29.630,5.288 23.151,4.201 L20.139,0.006 L17.867,0.006 L14.855,4.201 C8.376,5.288 3.434,10.890 3.434,17.657 L3.434,37.002 L0.013,37.002 L0.013,39.266 L3.434,39.266 L5.297,39.266 L16.282,39.266 L16.282,39.476 C16.282,40.866 17.412,41.993 18.807,41.993 C20.201,41.993 21.331,40.866 21.331,39.476 L21.331,39.266 L32.709,39.266 L34.572,39.266 L37.993,39.266 L37.993,37.002 L34.572,37.002 ZM19.003,1.588 L20.732,3.996 L17.274,3.996 L19.003,1.588 ZM5.297,37.002 L5.297,17.531 C5.297,11.081 10.543,5.853 17.014,5.853 L21.009,5.853 C27.471,5.853 32.709,11.073 32.709,17.514 L32.709,37.002 L5.297,37.002 Z"/>
+           </svg>
+           <p>Notificaciones</p>
+        </div> -->
+      <div class="close_sesion item_sub" (click)="auth.signOut()" (click)="hideMenu()">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 45 45">
+          <path fill-rule="evenodd" fill="rgb(27, 50, 205)" d="M20.500,43.999 C9.200,43.999 0.007,34.852 0.007,23.609 C0.007,16.723 3.465,10.349 9.257,6.560 L10.364,8.237 C5.141,11.653 2.023,17.400 2.023,23.609 C2.023,33.746 10.312,41.993 20.500,41.993 C30.688,41.993 38.976,33.746 38.976,23.609 C38.976,17.399 35.858,11.652 30.634,8.237 L31.742,6.560 C37.534,10.348 40.992,16.722 40.992,23.609 C40.992,34.852 31.799,43.999 20.500,43.999 ZM20.078,0.004 L22.346,0.004 L22.346,20.894 L20.078,20.894 L20.078,0.004 Z" />
+        </svg>
+        <p>Cerrar sesión</p>
+      </div>
+  
+    </div>
+  
+    <div class="circle"></div>
+  </div>
+</ng-template>
+<ng-template #guest>
+  <div class="container menu_mobile mobile">
+    <div class="head">
+      <div class="login_mobile element">
+        <button class="btn_login" (click)="openModal(content)">Ingresar</button>
+      </div>
+      <div class="exit element" (click)="hideMenu()">
+        <img src="/assets/svg/exit_icon.svg" alt="Salir">
+      </div>
+    </div>
+    <ng-template #content let-c="close" let-d="dismiss" id="modal">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Únete a la comunidad que Piensa Digital</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-txt">
+        <p>
+          Ingresa y sácale todo el provecho a nuestra plataforma: sigue tus autores y temas
+          favoritos, guarda lecturas para leer
+          más tarde, califica las publicaciones y accede a muchos más contenidos sobre transformación
+          digital.
+          <br><br> Accede con Google o a través de tus redes sociales
+        </p>
+      </div>
+      <div class="modal-body">
+        <div class="col-lg-12">
+          <button class="btn-google btn_login" (click)="googleLogin()">
+            <span class="fa fa-google"></span> Ingresar con Google
+          </button>
+          <br>
+          <button class="btn-facebok btn_login" (click)="facebookLogin()">
+            <span class="fa fa-facebook"></span> Ingresar con Facebook
+          </button>
+          <br>
+          <button class="btn-twitter btn_login" (click)="twitterLogin()">
+            <span class="fa fa-twitter"></span> Ingresar con Twitter
+          </button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="modal-txt">
+          <p>Términos y Condiciones</p>
+        </div>
+        <div class="modal-txt">
+          <p>Política de Privacidad</p>
+        </div>
+      </div>
+    </ng-template>
+
+    <div class="container_menu">
+      <div class="menu_vertical">
+        <ul>
+          <li class="ani2">
+            <a [class.active]="router.isActive('home', true)" [routerLink]="['']">Lo último</a>
+          </li>
+          <li class="item-menu ani3">
+            <a routerLinkActive="active" routerLink="/home/tecnologia">Tecnología</a>
+          </li>
+          <li class="item-menu ani4">
+            <a routerLinkActive="active" routerLink="/home/emprendimiento">Emprendimiento</a>
+          </li>
+          <li class="item-menu ani5">
+            <a routerLinkActive="active" routerLink="/home/startups">Startups</a>
+          </li>
+          <li class="item-menu ani6">
+            <a routerLinkActive="active" routerLink="/home/liderazgo">Liderazgo</a>
+          </li>
+          <li class="item-menu ani7">
+            <a routerLinkActive="active" routerLink="/about-us">Nosotros</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="circle"></div>
+  </div>
+</ng-template>

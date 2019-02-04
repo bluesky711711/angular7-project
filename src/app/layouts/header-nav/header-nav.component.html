@@ -1,0 +1,172 @@
+<!--Header-->
+<header>
+    <div class="container">
+
+        <!--Main Header-->
+        <div class="row" id="main-header">
+
+            <!--Buscador-->
+            <div class="col flex-pd fs" id="buscador">
+                <div id="main-buscador">
+                    <a [routerLink]="['/search']" aria-label="buscar">
+                        <div data-aos="fade-in" data-aos-duration="500">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 30 30"
+                                id="search_icon">
+                                <path fill-rule="evenodd" fill="#1a31ca" d="M3.304,3.304 C5.435,1.173 8.268,-0.000 11.281,0.000 C11.281,0.000 11.281,0.000 11.281,0.000 C14.294,0.000 17.127,1.174 19.258,3.304 C21.388,5.435 22.562,8.268 22.562,11.281 C22.562,13.337 22.015,15.309 20.991,17.032 L29.201,25.242 C29.716,25.757 30.000,26.442 30.000,27.171 C30.000,27.899 29.716,28.584 29.201,29.099 L29.099,29.201 C28.584,29.716 27.899,30.000 27.171,30.000 C26.442,30.000 25.757,29.716 25.242,29.201 L17.032,20.991 C15.309,22.015 13.337,22.562 11.281,22.562 C8.268,22.562 5.435,21.388 3.304,19.258 C1.173,17.127 -0.000,14.294 0.000,11.281 C-0.000,8.268 1.173,5.435 3.304,3.304 ZM26.619,27.824 C26.767,27.971 26.962,28.052 27.171,28.052 C27.379,28.052 27.575,27.971 27.722,27.824 L27.824,27.722 C27.971,27.575 28.052,27.379 28.052,27.171 C28.052,26.962 27.971,26.767 27.824,26.619 L19.838,18.633 C19.653,18.848 19.460,19.056 19.258,19.258 C19.056,19.460 18.848,19.653 18.633,19.838 L26.619,27.824 ZM4.682,17.880 C6.444,19.643 8.788,20.614 11.281,20.614 C13.774,20.614 16.117,19.643 17.880,17.880 C19.643,16.118 20.614,13.774 20.614,11.281 C20.614,8.788 19.643,6.444 17.880,4.682 C16.117,2.919 13.774,1.948 11.281,1.948 C8.788,1.948 6.444,2.919 4.681,4.682 C2.919,6.444 1.948,8.788 1.948,11.281 C1.948,13.774 2.919,16.118 4.682,17.880 Z" />
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!--Logo-->
+            <div class="col-6 flex-pd" id="logo">
+                <div id="main-logo">
+                    <a routerLink="">
+                        <div class="inside_logo" data-aos="fade-in" data-aos-duration="500">
+                            <img src="/assets/svg/logotipo_beta.svg" alt="Logo PiensaDigital" style="width: 100%;">
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div *ngIf="auth.user$ | async; then authenticated else guest"></div>
+            <ng-template #guest>
+                <div class="col flex-pd fd" id="login fd">
+                    <div id="main-login">
+                        <div class="first-button desk" (click)="openModal(content)">
+                            <button type="button">Ingresar</button>
+                        </div>
+                        <div class="first-button mobile" (click)="showMenu()">
+                            <button type="button" aria-label="menu">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    viewBox="1 1 10 6" id="hamburger_menu">
+                                    <path fill-rule="evenodd" fill="rgb(27, 50, 205)" d="M0.567,1.473 L0.567,0.700 L13.585,0.700 L13.585,1.473 L0.567,1.473 ZM13.584,4.603 L0.591,4.603 L0.591,3.823 L13.584,3.823 L13.584,4.603 ZM13.584,7.724 L0.591,7.724 L0.591,6.944 L13.584,6.944 L13.584,7.724 Z" />
+                                </svg>
+                                <!-- <svg  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 27 27" id="login_icon">
+                                    <path fill-rule="evenodd"  fill="#1a31ca"
+                                    d="M14.956,-0.000 C7.197,-0.000 0.811,5.859 0.002,13.382 L16.864,13.382 L13.331,9.466 C12.732,8.802 12.786,7.778 13.452,7.181 C14.119,6.583 15.145,6.637 15.744,7.301 L21.709,13.913 C21.709,13.914 21.710,13.915 21.711,13.916 L21.713,13.918 C21.720,13.925 21.726,13.934 21.732,13.941 C21.762,13.975 21.790,14.009 21.816,14.045 C21.824,14.056 21.831,14.067 21.839,14.078 C21.862,14.111 21.885,14.144 21.905,14.179 C21.916,14.198 21.925,14.217 21.936,14.236 C21.950,14.264 21.966,14.291 21.979,14.318 C21.991,14.344 22.000,14.371 22.011,14.397 C22.020,14.419 22.030,14.441 22.038,14.463 C22.048,14.493 22.056,14.523 22.065,14.554 C22.071,14.573 22.077,14.593 22.082,14.613 C22.090,14.644 22.095,14.675 22.101,14.706 C22.104,14.726 22.109,14.746 22.112,14.766 C22.116,14.795 22.118,14.825 22.121,14.854 C22.123,14.877 22.126,14.899 22.127,14.922 C22.128,14.948 22.128,14.974 22.128,15.000 C22.128,15.026 22.128,15.052 22.127,15.078 C22.126,15.101 22.123,15.124 22.121,15.146 C22.118,15.175 22.116,15.205 22.112,15.234 C22.109,15.254 22.104,15.274 22.101,15.295 C22.095,15.325 22.090,15.356 22.082,15.387 C22.077,15.407 22.071,15.427 22.065,15.447 C22.056,15.477 22.048,15.507 22.038,15.537 C22.030,15.559 22.020,15.581 22.011,15.603 C22.000,15.629 21.991,15.656 21.979,15.682 C21.966,15.710 21.950,15.736 21.936,15.764 C21.925,15.783 21.916,15.802 21.905,15.821 C21.885,15.856 21.862,15.889 21.839,15.922 C21.831,15.933 21.824,15.944 21.816,15.955 C21.790,15.991 21.762,16.025 21.732,16.059 C21.726,16.066 21.720,16.075 21.713,16.082 L21.711,16.085 C21.710,16.086 21.709,16.086 21.709,16.087 L15.744,22.699 C15.145,23.363 14.119,23.417 13.452,22.819 C12.786,22.222 12.732,21.199 13.331,20.534 L16.864,16.618 L0.002,16.618 C0.811,24.141 7.197,30.000 14.956,30.000 C23.264,30.000 29.999,23.284 29.999,15.000 C29.999,6.716 23.264,-0.000 14.956,-0.000 Z"/>
+                                </svg> -->
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <ng-template #content let-c="close" let-d="dismiss" id="modal">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Únete a la comunidad que Piensa Digital</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-txt">
+                        <p>
+                            Ingresa y sácale todo el provecho a nuestra plataforma: sigue tus autores y temas
+                            favoritos, guarda lecturas para leer
+                            más tarde, califica las publicaciones y accede a muchos más contenidos sobre transformación
+                            digital.
+                            <br><br> Accede con Google o a través de tus redes sociales
+                        </p>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-lg-12">
+                            <button class="btn-google btn_login" (click)="googleLogin()">
+                                <span class="fa fa-google"></span> Ingresar con Google
+                            </button>
+                            <br>
+                            <button class="btn-facebok btn_login" (click)="facebookLogin()">
+                                <span class="fa fa-facebook"></span> Ingresar con Facebook
+                            </button>
+                            <br>
+                            <button class="btn-twitter btn_login" (click)="twitterLogin()">
+                                <span class="fa fa-twitter"></span> Ingresar con Twitter
+                            </button>
+                        </div>
+                        <!-- <div class="modal-txt two">
+                            <p>¿Ya posees una cuenta? Ingresa</p>
+                        </div> -->
+                    </div>
+                    <div class="modal-footer">
+                        <div class="modal-txt">
+                            <p>Términos y Condiciones</p>
+                        </div>
+                        <div class="modal-txt">
+                            <p>Política de Privacidad</p>
+                        </div>
+                    </div>
+                </ng-template>
+            </ng-template>
+            <ng-template #authenticated>
+                <!--Perfil-->
+                <div class="col flex-pd fd" id="perfil fd" *ngIf="auth.user$ | async as user">
+                    <!--Notificación-->
+                    <!-- <div id="main-notificacion" >
+                        <a href="#">
+                            <div data-aos="fade-in" data-aos-duration="500">
+                                <img src="/assets/img/utils/icono_notificacion.png" alt="Notificación">
+                            </div>
+                        </a>
+                    </div> -->
+                    <!--Perfil-->
+                    <!-- <div class="contribuye desk" data-aos="fade-in" data-aos-duration="800">
+                        <button class="btn_scnd-pd">Conviértete en contribuidor</button>
+                    </div> -->
+                    <div id="main-perfil" class="dropdown desk">
+                        <div data-aos="fade-in" data-aos-duration="500" id="dropdownMenuButton" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <img [src]="user.photoURL" alt="Perfil">
+                        </div>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <div class="welcome">
+                                <div class="inside_wel flex-pd">
+                                    <div class="img-prof">
+                                        <img [src]="user.photoURL" alt="Perfil">
+                                    </div>
+                                    <div class="txt">
+                                        <p class="hi">Hola,</p>
+                                        <p class="name">{{ user.displayName | toFirstname }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="drop_content-items">
+                                <a class="dropdown-item prof-di" [routerLink]="['/user',user.uid,'bookmarks']" *ngIf="user.roles.subscriber && !user.roles.editor && !user.roles.contributor">Mi
+                                    perfil</a>
+                                <a class="dropdown-item prof-di" [routerLink]="['/editor',user.uid,'myposts']" *ngIf="user.roles.editor || user.roles.contributor">Mi
+                                    perfil</a>
+                                <a class="dropdown-item config-di" routerLink="/admin/users" *ngIf="user.roles.admin || user.roles.editor">Configuración</a>
+                                <a class="dropdown-item close-di" routerLink="" (click)="auth.signOut()">Cerrar sesion</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="main-perfil" class="dropdown mobile">
+                        <div data-aos="fade-in" data-aos-duration="500" (click)="showMenu()">
+                            <img [src]="user.photoURL" alt="Perfil">
+                        </div>
+                    </div>
+                </div>
+
+            </ng-template>
+        </div>
+
+        <!--Menú-->
+        <div class="row" id="sub-header">
+            <div class="col flex-pd" id="container-menu" data-aos="fade-in" data-aos-duration="500">
+                <ul id="main-menu">
+                    <li class="item-menu">
+                        <a routerLinkActive="active" routerLink="/home/tecnologia">Tecnología</a>
+                    </li>
+                    <li class="item-menu">
+                        <a routerLinkActive="active" routerLink="/home/emprendimiento">Emprendimiento</a>
+                    </li>
+                    <li class="item-menu">
+                        <a routerLinkActive="active" routerLink="/home/futuro">Futuro</a>
+                    </li>
+                    <li class="item-menu">
+                        <a routerLinkActive="active" routerLink="/home/lifehacks">lifehacks</a>
+                    </li>
+                    <li class="item-menu">
+                        <a routerLinkActive="active" routerLink="/home/business">business</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>

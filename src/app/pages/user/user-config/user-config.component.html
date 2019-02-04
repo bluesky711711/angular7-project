@@ -1,0 +1,11 @@
+<div *ngIf="user | async as user">
+  <form (ngSubmit)="dataUser(dataUserForm.value)" [formGroup]="dataUserForm">
+    <div class="col-md-12">
+      <app-age-range-selector (age)="changeAge($event)" [ageExt]="user.age"></app-age-range-selector>
+    </div>
+    <div class="col-md-12">
+      <app-occupation-selector (occupation)="changeOccupation($event)" [occupationExt]="user.occupation"></app-occupation-selector>
+    </div>
+    <button mat-raised-button color="accent" type="submit" [disabled]="!dataUserForm.valid">Guardar</button>
+  </form>
+</div>

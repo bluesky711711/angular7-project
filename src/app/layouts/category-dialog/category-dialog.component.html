@@ -1,0 +1,11 @@
+<h3 mat-dialog-title>Categoria</h3>
+<mat-dialog-content>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Nombre" [(ngModel)]="value">
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+  <button mat-raised-button color="primary" (click)="setCategory()" [disabled]="!value">Guardar</button>
+  <button mat-raised-button mat-dialog-close color="warn">Cancel</button>
+</mat-dialog-actions>

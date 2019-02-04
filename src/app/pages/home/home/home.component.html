@@ -1,0 +1,84 @@
+<div class="content">
+    <!-- Slider -->
+    <app-slider-home></app-slider-home>
+    <!-- BANNER -->
+    <div class="container" id="banner-pd">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="container_banner">
+                    <a routerLink="/become" target="_blank" class="desk"><img class="img_banner" src="/assets/img/utils/banner.jpg"
+                            alt="Escribe en Piensa Digital"></a>
+                    <a routerLink="/become" target="_blank" class="mobile"><img class="img_banner" src="/assets/img/utils/banner-mobile.jpg"
+                            alt="Escribe en Piensa Digital"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--TRENDING NOW-->
+    <!-- <app-trending-bar></app-trending-bar> -->
+    <!-- TRENDING MOBILE -->
+    <div class="col-md-3 mobile trending-column">
+        <!--Título-->
+        <div class="title">
+            <h2>Trending</h2>
+        </div>
+        <!--Items-->
+        <app-trending-column></app-trending-column>
+    </div>
+    <!--RECOMENDADOS Y REDACTORES-->
+    <div class="container" id="seccion_dos">
+        <div class="row">
+            <!--Recomendados-->
+            <div class="col-md-9" id="recomendados_home">
+                <!--Título-->
+                <div class="title">
+                    <h2>Destacados</h2>
+                </div>
+                <!--Artículos-->
+                <app-swiper-recommended class="mobile"></app-swiper-recommended>
+                <app-recommended-home class="desk"></app-recommended-home>
+            </div>
+            <!--Trending Column-->
+            <div class="col-md-3 desk trending-column">
+                <!--Título-->
+                <div class="title">
+                    <h2>Trending</h2>
+                </div>
+                <!--Items-->
+                <app-trending-column></app-trending-column>
+                <!-- <app-editors-home></app-editors-home> -->
+                <!--Ver más-->
+                <!-- <div>
+                    <button class="white" routerLink="/contributors">Ver más</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <!--NOTICIAS-->
+    <div class="container" id="seccion_noticias">
+        <div class="row">
+            <!--Menú Noticias-->
+            <div class="modify_wdt">
+                <div class="menu_vertical">
+                    <ul>
+                        <li *ngIf="auth.user$ | async">
+                            <a routerLinkActive="active" [routerLink]="['foryou']">Para ti</a>
+                        </li>
+                        <li>
+                            <a [class.active]="router.isActive('home', true)" [routerLink]="['']">Lo último</a>
+                        </li>
+                        <li *ngFor="let category of categories$ | async">
+                            <a routerLinkActive="active" [routerLink]="[category.uid]">{{category.value}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--Feed de Noticias-->
+            <div class="col modify-col">
+                <div [@routeAnimation]="o.isActivated && o.activatedRoute.routeConfig.path">
+                    <router-outlet #o="outlet"></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

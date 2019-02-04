@@ -1,0 +1,160 @@
+/*DATOS EDITOR*/
+.datos_ue {
+    margin-top: 50px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #e3e4e6;
+}
+
+.datos_ue .resume-cont .avatar {
+    width: 200px!important;
+    height: 200px!important;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.datos_ue h6 {
+    margin-bottom: 0;
+}
+
+.name h1 {
+    color: #1a31ca!important;
+}
+
+.description_long {
+    color: #5e6071;
+    font-style: italic;
+}
+
+.text_b {
+    color: #1a31ca;
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 15px!important;
+    margin: 0 15px 0 0!important;
+}
+
+/*Datos extras*/
+.more_info .text_b:first-child:before {
+    content: "\f007";
+    font-family: FontAwesome;
+    display: inline-block;
+    margin-right: 5px;
+    transform: translateY(-1px);
+}
+
+.more_info .text_b:first-child {
+    border-right: 1px solid;
+    padding-right: 15px;
+}
+
+.more_info .text_b:last-child:before {
+    content: "\f06e";
+    font-family: FontAwesome;
+    display: inline-block;
+    margin-right: 5px;
+    transform: translateY(-1px);
+}
+
+.sub_stats {
+    padding: 0;
+    margin-top: 20px;
+}
+
+.menu_vertical {
+    animation: go_in ease-in-out 1s;
+}
+
+.modify-col {
+    animation: go_in ease-in-out 1.5s;
+}
+
+/*Redes*/
+.red {
+    margin-left: 8px;
+}
+
+.redes .red:first-child {
+    margin-left: 0;
+}
+
+/*Menú*/
+#datos_profile {
+    margin-top: 60px;
+}
+
+.menu_vertical ul {
+    transform: translateY(10px);
+}
+
+.move_edit {
+    transform: translateX(40%);
+}
+
+/*Responsive*/
+@media (max-width: 1800px) {
+    .datos_ue .resume-cont .avatar {
+        max-width: 150px;
+        max-height: 150px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .datos_ue .resume-cont .avatar {
+        max-width: 120px;
+        max-height: 120px;
+    }
+}
+
+@media (max-width: 900px) {
+    .datos_ue {
+        margin-top: 30px;
+    }
+
+    #datos_profile {
+        margin-top: 10px;
+    }
+
+    .datos_ue .resume-cont .avatar {
+        max-width: 90px;
+        max-height: 90px;
+        margin: 0 auto;
+    }
+
+    .display_name {
+        justify-content: center!important;
+        margin-top: 20px;
+    }
+
+    .menu_vertical {
+        position: relative;
+        top: -15px;
+        transform: translateX(15px);
+    }
+
+    .menu_vertical ul {
+        display: inline-block;
+        width: 500px;
+    }
+
+    .menu_vertical ul li {
+        line-height: 20px;
+        margin-bottom: 0;
+        margin-right: 20px;
+        display: inline-block;
+    }
+
+    .modify_wdt {
+        max-width: 50%;
+        position: absolute;
+    }
+
+    .col.modify-col {
+        margin-top: 70px!important;
+    }
+}
+
+@media (max-width: 500px) {
+    .menu_vertical ul {
+        max-width: 333px;
+    }
+}

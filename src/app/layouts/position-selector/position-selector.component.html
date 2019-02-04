@@ -1,0 +1,7 @@
+<mat-form-field>
+  <mat-select placeholder="Cargo" [(ngModel)]="positionExt" (ngModelChange)="ngChange($event)">
+    <mat-option *ngFor="let position of positions | async" [value]="position.uid">
+      {{position.value}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

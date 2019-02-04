@@ -1,0 +1,37 @@
+<!--NOTICIAS-->
+<div class="content-general" id="seccion_noticias" appScrollable (scrollPosition)="scrollHandler($event)">
+  <div class="row scroll-container">
+
+    <button mat-fab [routerLink]="['/post-editor', 'new']" style="z-index: 1000; position: fixed;  bottom: 30px; right: 60px;">
+      <mat-icon aria-label="Nuevo Post">add</mat-icon>
+    </button>
+    
+    <div class="col-md-12">
+      <!--Title-->
+      <div class="second_title">
+        <h3>Mis posts</h3>
+      </div>
+      <!--Item-->
+      <ng-container *ngFor="let post of page.data | async; let i = index; trackBy: trackByIdx">
+        <app-item-post [post]="post"></app-item-post>
+      </ng-container>
+      <!--fin Item-->
+    </div>
+    <!--Scroll Down-->
+    <div *ngIf="(page.data | async)?.length > 9; then scroll"></div>
+    <ng-template #scroll>
+      <div class="scroll" *ngIf="!page.done | async">
+        <div class="txt">
+          <p>Scroll Down para cargar más artículos</p>
+        </div>
+      </div>
+      <!-- <app-loading-spinner *ngIf="page.loading | async"></app-loading-spinner> -->
+      <div class="scroll" *ngIf="page.done | async">
+        <div class="txt">
+          <p>Fin de los post</p>
+        </div>
+      </div>
+    </ng-template>
+
+  </div>
+</div>

@@ -1,0 +1,7 @@
+<mat-form-field>
+  <mat-select placeholder="Ocupación" [(ngModel)]="occupationExt" (ngModelChange)="ngChange($event)">
+    <mat-option *ngFor="let occupation of occupations | async" [value]="occupation.uid">
+      {{occupation.value}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

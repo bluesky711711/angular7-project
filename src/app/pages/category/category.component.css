@@ -1,0 +1,141 @@
+.resume-cont .detalles p,
+.resume-cont .detalles p a {
+	color: #a9acc3;
+}
+
+/*Título*/
+.first_title {
+    margin-bottom: 100px;
+}
+
+/*Item Noticia*/
+.item {
+	-webkit-animation: show .7s cubic-bezier(0.250, 0.460, 0.450, 0.940);
+	animation: show .7s cubic-bezier(0.250, 0.460, 0.450, 0.940);
+}
+
+.item.noticia {
+	display: flex;
+	min-height: 170px;
+	width: 100%;
+	box-sizing: content-box;
+	padding-bottom: 30px;
+	margin-bottom: 30px;
+	border-bottom: 1px solid #e3e4e6;
+}
+
+ .item.noticia .txt {
+	width: 100%;
+	max-width: 75%;
+}
+
+ .item.noticia .txt h4,
+ .item.noticia .txt .text {
+	margin: 0 0 2%;
+}
+
+.item.noticia .title h4 {
+	letter-spacing: -2px;
+	transform: translateY(-1px);
+	transition: all ease-out .2s;
+}
+
+.item.noticia:hover .title h4 {
+	color: #002ed2 !important;
+	transition: all ease-in-out .2s;
+}
+
+ .item.noticia .txt .text p {
+	color: #5e6071;
+}
+
+/*Imagen*/
+.imagen-pd {
+	width: 100%;
+	max-width: 25%;
+	height: 170px;
+	margin-left: 5%;
+	position: relative;
+}
+
+ .item.noticia .imagen {
+    width: 100%;
+    height: 100%;
+	overflow: hidden;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item.noticia .imagen img {
+    width: auto;
+	height: 100%;
+	transition: all ease-out .2s;
+}
+
+.item.noticia:hover .imagen img {
+    height: 110%;
+	transition: all ease-in-out .2s;
+}
+
+/*Bookmark*/
+.bookmark-pd {
+    position: absolute;
+    right: 15px;
+	top: 15px;
+	box-shadow: 0 3px 15px #1a31ca45;
+	-moz-box-shadow: 0 3px 15px #1a31ca45;
+	-o-box-shadow: 0 3px 15px #1a31ca45;
+}
+
+.txt.row .categoria {
+    transform: translateY(-6px);
+}
+
+/*ScrollDown*/
+.scroll {
+	-webkit-animation: show .7s cubic-bezier(0.250, 0.460, 0.450, 0.940);
+	animation: show .7s cubic-bezier(0.250, 0.460, 0.450, 0.940);
+}
+
+/*Animation*/
+@-webkit-keyframes show {
+	0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@keyframes show {
+	0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+/*Responsive*/
+@media (max-width: 800px) {
+    .item.noticia .col-md-5 {
+        display: none;
+	}
+	
+	.item.noticia h4 {
+		font-size: 21px!important;
+		letter-spacing: -1.5px;
+	}
+
+	.item.noticia .txt {
+		max-width: 77%;
+	}
+
+	.imagen-pd {
+		max-width: 30%;
+		height: 100px;
+		margin-left: 3%;
+		margin-top: 28px;
+		border-radius: 5px;
+		overflow: hidden;
+	}
+}
+
+@media (max-width: 490px) {
+	.first_title {
+		margin-bottom: 0;
+	}
+}

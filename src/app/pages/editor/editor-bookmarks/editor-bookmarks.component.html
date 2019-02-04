@@ -1,0 +1,49 @@
+<!--BOOKMARKS-->
+<div class="content-general" id="seccion_noticias" appScrollable (scrollPosition)="scrollHandler($event)">
+  <div class="row scroll-container">
+    <div class="col-md-12">
+      <!--Title-->
+      <div class="second_title">
+        <h3>Guardados</h3>
+      </div>
+      <!--Item-->
+      <ng-container *ngFor="let make of page.data | async; let i = index; trackBy: trackByIdx">
+        <app-item-post [post]="post[i]"></app-item-post>
+      </ng-container>
+      <!--fin Item-->
+    </div>
+
+    <!--Scroll Down-->
+    <div *ngIf="(page.data | async)?.length > 9; then scroll"></div>
+    <ng-template #scroll>
+      <div class="scroll" *ngIf="!page.done | async">
+        <div class="txt">
+          <p>Scroll Down para cargar más artículos</p>
+        </div>
+      </div>
+      <!-- <app-loading-spinner *ngIf="page.loading | async"></app-loading-spinner> -->
+      <div class="scroll" *ngIf="page.done | async">
+        <div class="txt">
+          <p>Fin de los post</p>
+        </div>
+      </div>
+    </ng-template>
+
+    <div class="container" *ngIf="showEmpty">
+      <div class="row">
+        <div class="col-md-12 content-nothing">
+          <div class="img-inside">
+            <img src="/assets/svg/nothing.svg" alt="Encuentra">
+          </div>
+          <div class="content-inside">
+            <div class="txt">
+              <h2>Aún no tienes post guardados</h2>
+              <p>Empieza a explorar y guarda algunos.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

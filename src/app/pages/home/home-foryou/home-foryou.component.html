@@ -1,0 +1,28 @@
+<div>
+  <div class="col no-pad">
+    <!-- Title-->
+    <div class="first_title">
+      <h2>Para ti</h2>
+    </div>
+    <!--Item-->
+    <ng-container *ngFor="let post of posts$; let i = index; trackBy: trackByIdx">
+      <app-item-post [post]="post"></app-item-post>
+    </ng-container>
+    <!--fin Item-->
+    <div class="container" *ngIf="showEmpty">
+      <div class="row">
+        <div class="col-md-12 content-nothing">
+          <div class="img-inside">
+            <img src="/assets/svg/nothing.svg" alt="Encuentra">
+          </div>
+          <div class="content-inside">
+            <div class="txt">
+              <h2>Aún no sigues tags y contribuidores</h2>
+              <p>Empieza a explorar y guarda algunos.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

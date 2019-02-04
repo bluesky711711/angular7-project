@@ -1,0 +1,38 @@
+<div class="item" *ngFor="let editor of editors$ | async; let i = index" [ngClass]="class[i]" data-aos="fade-in" data-aos-duration="500" data-aos-once="true">
+  <div class="imagen" [routerLink]="['/editor',editor.uid,'posts']" (mouseover)="class[i]='active'" (mouseout)="class[i]=''" style="cursor: pointer;">
+    <img [src]="editor.photoURL">
+  </div>
+  <div class="txt" (mouseover)="class[i]='active'" (mouseout)="class[i]=''">
+    <div class="subtitle">
+      <p class="nombre">
+        <a [routerLink]="['/editor',editor.uid,'posts']">{{editor.displayName}}</a>
+      </p>
+      <!-- <p class="cargo">
+        <a [routerLink]="['/editor',editor.uid,'posts']">{{(editor.position | toPosition | async)?.value}}</a>
+      </p> -->
+    </div>
+    <!-- <div *ngIf="class[i]; then follow_btns else visitCount"></div> -->
+    <!-- <ng-template #follow_btns> -->
+      <p class="vistas">
+        {{editor.visitCount | toNumber}} de vistas
+      </p>
+      <button (click)="follow(editor.uid, i)" *ngIf="followed[i] !== editor.uid" class="white">Seguir</button>
+      <button (click)="unFollow(editor.uid, i)" *ngIf="followed[i] === editor.uid" class="btn_unfollow">Dejar de seguir</button>
+    <!-- </ng-template> -->
+    <!-- <ng-template #visitCount>
+      <div class="datos"> -->
+        <!-- <div class="stars">
+          <img src="/assets/img/utils/estrella.png" class="estrella">
+          <img src="/assets/img/utils/estrella.png" class="estrella">
+          <img src="/assets/img/utils/estrella.png" class="estrella">
+          <img src="/assets/img/utils/estrella.png" class="estrella">
+          <img src="/assets/img/utils/estrella.png" class="estrella_down">
+        </div> -->
+        <!-- <p class="vistas">
+          {{editor.visitCount}} de vistas
+        </p>
+      </div>
+    </ng-template> -->
+  </div>
+
+</div>

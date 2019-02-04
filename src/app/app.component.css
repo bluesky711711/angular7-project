@@ -1,0 +1,28 @@
+/* :host {
+  background: rgba(0, 0, 0, 0.1);
+} */
+
+/* app-header-nav {
+  z-index: 1000;
+  box-shadow: 2px 0 0 2px rgba(0, 0, 0, 0.3);
+  color: rgb(26, 46, 226);
+  background-color: white;
+  font-size: 2rem;
+  height: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+
+.page {
+  height: 50vh;
+}
+
+.page:nth-child(odd) {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.page:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.05);
+}

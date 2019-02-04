@@ -1,0 +1,34 @@
+<div class="row">
+
+<div class="col-md-4" id="redactores_home" appScrollable (scrollPosition)="scrollHandler($event)">
+  <!--Título-->
+  <div class="second_title">
+    <h3>Seguidores</h3>
+  </div>
+
+  <!--Items-->
+  <div class="item" *ngFor="let follower of page.data | async; let i = index">
+    <div class="imagen">
+      <img [src]="user[i]?.photoURL">
+    </div>
+
+    <div class="txt">
+      <div class="subtitle">
+        <p class="nombre" *ngIf="user[i]?.position">
+          <a [routerLink]="['/editor', follower.followerId,'posts']">{{user[i]?.displayName}}</a>
+        </p>
+        <p class="nombre" *ngIf="!user[i]?.position">
+          {{user[i]?.displayName }}
+        </p>
+        <p class="cargo" *ngIf="user[i]?.position">
+          {{(user[i]?.position | toPosition | async)?.value}}
+        </p>
+        <p class="cargo" *ngIf="!user[i]?.position">
+          Suscriptor
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>

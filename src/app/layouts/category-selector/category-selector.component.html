@@ -1,0 +1,9 @@
+<mat-form-field>
+  <mat-select placeholder="Escoge la categoría" [(ngModel)]="categoryExt" (ngModelChange)="ngChange($event)">
+    <mat-optgroup *ngFor="let category of categories | async" [label]="category.value" [disabled]="category.disabled">
+        <mat-option *ngFor="let subcategory of category.subcategories" [value]="category.uid+'-'+subcategory.uid">
+          {{subcategory.value}}
+        </mat-option>
+      </mat-optgroup>
+    </mat-select>
+</mat-form-field>

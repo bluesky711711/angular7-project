@@ -1,0 +1,247 @@
+<div *ngIf="showSpinner; then loading else content"></div>
+<ng-template #loading>
+  <app-loading-spinner></app-loading-spinner>
+</ng-template>
+<ng-template #content>
+  <div class="content" *ngIf="post$ | async as post">
+    <app-header-nav-post [post]="post" [editor]="editor" *ngIf="post$ | async as post"></app-header-nav-post>
+    <!-- Slider -->
+    <div class="general_slider-pd">
+      <div class="img_inside-slider" data-aos="fade" data-aos-duration="200" data-aos-once="true">
+        <img [src]="post.image" alt="post.title">
+      </div>
+      <div class="gradient-bg">
+      </div>
+
+      <!--Imagen de Fondo Slider-->
+      <div class="container content-slider fs">
+        <div class="row">
+          <!--Artículo Principal-->
+          <div class="col-md-12 articulo-slider">
+
+            <!--Tag-->
+            <app-category-tag [post]="post" data-aos="fade-right" data-aos-duration="600" data-aos-once="true"></app-category-tag>
+            <!--Contenido Artículo-->
+            <div class="txt" data-aos="fade-right" data-aos-duration="900" data-aos-once="true">
+              <h1>{{post.title}}</h1>
+              <p *ngIf="!post.updateAt">{{post.createdAt | toDate | amLocale:'es' | amDateFormat:'MMM D - YYYY'}}</p>
+              <p *ngIf="post.updateAt">{{post.createdAt | toDate | amLocale:'es' | amDateFormat:'MMM D - YYYY'}} - Editado {{post.updateAt | toDate |
+              amLocale:'es' | amDateFormat:'MMM D - YYYY'}}</p>
+            </div>
+            <!--Detalles-->
+            <div class="resume-cont flex-pd fs" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true">
+
+              <div class="avatar flex-pd">
+                <img [src]="editor?.photoURL" alt="Foto de usuario">
+              </div>
+
+              <div class="detalles_inside">
+                <p class="name inline"><a [routerLink]="['/editor', post.user.uid,'posts']">{{editor?.displayName}}</a></p>
+                <div class="share">
+                  <button (click)="follow(post.user?.uid)" *ngIf="followed?.followedId !== post.user?.uid" class="btn_follow line_white">Seguir</button>
+                  <button (click)="unFollow(post.user?.uid)" *ngIf="followed?.followedId === post.user?.uid" class="btn_unfollow line_white">Dejar
+                    de seguir</button>
+                </div>
+                <div class="cargo block">
+                  <p>{{(editor?.position | toPosition | async)?.value}}</p>
+                </div>
+                <p class="short_dsp">{{editor?.description}}</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="bg_black-pd"></div>
+    </div>
+
+    <!--COMPARTE: MOBILE-->
+    <div class="share mobile" data-aos="zoom-in-up" data-aos-duration="900" data-aos-once="true">
+      <div class="container flex-pd">
+        <div class="row">
+
+          <div class="txt">
+            <p>Comparte</p>
+          </div>
+
+          <div class="redes">
+            <div class="red">
+              <a [href]="editor?.social?.facebook"><i class="fa fa-facebook-square"></i></a>
+            </div>
+            <div class="red">
+              <a [href]="editor?.social?.linkedin"><i class="fa fa-linkedin-square"></i></a>
+            </div>
+            <div class="red">
+              <a [href]="editor?.social?.linkedin"><i class="fa fa-twitter"></i></a>
+            </div>
+            <div class="red">
+              <a (click)="copyURL()" style="cursor: pointer;" title="Copiar Link"><i class="fa fa-link"></i></a>
+            </div>
+            <div class="red">
+              <a href="whatsapp://send?text=https://piensadigital.co" data-action="share/whatsapp/share"><i class="fa fa-whatsapp"></i></a>
+            </div>
+            <div class="red">
+              <a (click)="setBookmark(post.uid)" *ngIf="!bookmark" style="cursor: pointer;" title="Guardar articulo"><i
+                  class="fa fa-bookmark-o"></i></a>
+              <a (click)="delBookmark(post.uid)" *ngIf="bookmark" style="cursor: pointer;" title="Eliminar articulo"><i
+                  class="fa fa-bookmark"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDER: MOBILE -->
+    <div class="general_slider-pd mobile" data-aos="zoom-in-up" data-aos-easing="ease-out" data-aos-duration="300"
+      data-aos-once="true">
+      <div class="img_inside-slider">
+        <img [src]="post.thumbnails[1010]" alt="post.title">
+      </div>
+    </div>
+
+    <!--Imagen de Fondo Slider-->
+    <div class="container content-slider mobile">
+      <div class="row">
+        <!--Artículo Principal-->
+        <div class="col-md-12 articulo-slider mobile">
+
+          <!--Tag-->
+          <app-category-tag [post]="post" data-aos="fade-right" data-aos-duration="700" data-aos-once="true"></app-category-tag>
+          <!--Contenido Artículo-->
+          <div class="txt" data-aos="zoom-in" data-aos-duration="1000" data-aos-once="true">
+            <h1>{{post.title}}</h1>
+            <p *ngIf="!post.updateAt">{{post.createdAt | toDate | amLocale:'es' | amDateFormat:'MMM D - YYYY'}}</p>
+            <p *ngIf="post.updateAt">{{post.createdAt | toDate | amLocale:'es' | amDateFormat:'MMM D - YYYY'}} - Editado {{post.updateAt | toDate |
+            amLocale:'es' | amDateFormat:'MMM D - YYYY'}}</p>
+            <p class="lectura">{{post.content | toString | toReadTime}}</p>
+          </div>
+          <!--Detalles-->
+          <div class="resume-cont flex-pd fs" data-aos="fade-right" data-aos-duration="900" data-aos-once="true">
+
+            <div class="avatar flex-pd">
+              <img [src]="editor?.photoURL" alt="editor?.displayName">
+            </div>
+
+            <div class="detalles_inside">
+              <p class="name"><a [routerLink]="['/editor', post.user.uid,'posts']">{{editor?.displayName}}</a></p>
+              <div class="more">
+                <div class="rank">
+                  <p>{{post.visitCount}} vistas</p>
+                </div>
+                <div class="follow">
+                  <div>
+                    <button (click)="follow(post.user?.uid)" *ngIf="followed?.followedId !== post.user?.uid" class="btn_follow">Seguir</button>
+                    <button (click)="unFollow(post.user?.uid)" *ngIf="followed?.followedId === post.user?.uid" class="btn_unfollow">Dejar
+                      de seguir</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!--CONTENIDO-->
+    <div class="container contenido_leer" data-aos="fade" data-aos-easing="ease-out" data-aos-duration="1000"
+      data-aos-once="true">
+      <div class="row">
+
+        <div class="col-md-1 cont_redes">
+          <div class="redes">
+            <div class="container_redes">
+
+              <div class="container_share">
+                <svg version="1.1" id="share_post" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                  x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
+                  <title>Compartir</title>
+                  <g>
+                    <path fill="#B5BEF9" d="M5.6,8.5c-0.8,0-1.5,0.7-1.5,1.5s0.7,1.5,1.5,1.5s1.5-0.7,1.5-1.5S6.5,8.5,5.6,8.5z M5.6,9.7
+                      c-0.2,0-0.3,0.1-0.3,0.3c0,0.2-0.1,0.3-0.3,0.3S4.7,10.2,4.7,10c0-0.5,0.4-0.9,0.9-0.9c0.2,0,0.3,0.1,0.3,0.3
+                      C5.9,9.6,5.8,9.7,5.6,9.7z" />
+                    <path fill="#B5BEF9" d="M13.2,7.2c0.8,0,1.5-0.7,1.5-1.5S14,4.1,13.2,4.1s-1.5,0.7-1.5,1.5C11.7,6.5,12.3,7.2,13.2,7.2z" />
+                    <path fill="#B5BEF9" d="M13.2,15.9c0.8,0,1.5-0.7,1.5-1.5c0-0.8-0.7-1.5-1.5-1.5c-0.8,0-1.5,0.7-1.5,1.5
+                      C11.7,15.2,12.3,15.9,13.2,15.9z" />
+                    <path fill="#B5BEF9" d="M10,0C4.5,0,0,4.5,0,10s4.5,10,10,10s10-4.5,10-10S15.5,0,10,0z M7.7,10c0,0.3-0.1,0.5-0.2,0.8l3.9,2.3
+                      c0.4-0.5,1-0.8,1.7-0.8c1.2,0,2.1,1,2.1,2.1s-1,2.1-2.1,2.1s-2.1-1-2.1-2.1c0-0.3,0.1-0.5,0.2-0.8l-3.9-2.3c-0.4,0.5-1,0.8-1.7,0.8
+                      c-1.2,0-2.1-1-2.1-2.1c0-1.2,1-2.1,2.1-2.1c0.7,0,1.3,0.3,1.7,0.8l3.9-2.3C11.1,6.2,11,5.9,11,5.6c0-1.2,1-2.1,2.1-2.1
+                      c1.2,0,2.1,1,2.1,2.1s-1,2.1-2.1,2.1c-0.7,0-1.3-0.3-1.7-0.8L7.6,9.2C7.7,9.5,7.7,9.7,7.7,10z" />
+                  </g>
+                </svg>
+              </div>
+
+              <!-- <div class="red">
+
+                <a [href]="editor?.social?.facebook"><i class="fa fa-facebook-square"></i></a>
+              </div>
+              <div class="red">
+                <a [href]="editor?.social?.linkedin"><i class="fa fa-linkedin-square"></i></a>
+              </div>
+              <div class="red">
+                <a [href]="editor?.social?.linkedin"><i class="fa fa-twitter"></i></a>
+              </div>-->
+			  <div class="red">
+				<fb-like></fb-like>
+			  </div>
+			  <div class="red">
+				<linkedin-share></linkedin-share>
+			  </div>
+			  <div class="red">
+				<tweet></tweet>
+			  </div>
+
+              <div class="red">
+                <a (click)="copyURL()" style="cursor: pointer;" title="Copiar Link"><i class="fa fa-link"></i></a>
+              </div>
+              <div class="red">
+                <a (click)="setBookmark(post.uid)" *ngIf="!bookmark" style="cursor: pointer;" title="Guardar articulo"><i
+                    class="fa fa-bookmark-o"></i></a>
+                <a (click)="delBookmark(post.uid)" *ngIf="bookmark" style="cursor: pointer;" title="Eliminar articulo"><i
+                    class="fa fa-bookmark"></i></a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-9">
+          <div class="contenido-pd" [innerHtml]="post.content | safeHtml">
+          </div>
+
+          <!-- TAGS -->
+          <div class="row post_tags">
+            <div class="col-md-12 title_tags">
+              <h5>Tags</h5>
+            </div>
+            <ng-container *ngFor="let tag of post.tags">
+              <a [routerLink]="['/search']" [queryParams]="{ tag: tag }" class="item_tag">
+                <p>{{tag}}</p>
+              </a>
+            </ng-container>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!--RECOMENDADOS-->
+    <app-recommended-post class="desk"></app-recommended-post>
+    <div class="mobile recommend_in">
+      <div class="title">
+        <h5>Recomendados</h5>
+      </div>
+      <app-swiper-recommended></app-swiper-recommended>
+    </div>
+
+    <div class="container disqus_in">
+      <disqus [identifier]="identifier">
+      </disqus>
+    </div>
+
+
+  </div>
+</ng-template>

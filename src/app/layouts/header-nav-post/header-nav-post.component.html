@@ -1,0 +1,41 @@
+<!--Header-->
+<header>
+  <div class="image">
+    <!--Main Header-->
+    <div class="container" id="main-header-post">
+      <div class="primary_container" data-aos="fade-right" data-aos-duration="700">
+        <div class="row content_header">
+          <div class="col-md-10 txt"><p>{{post?.title}}</p></div>
+          <div class="col-md-2 exit" routerLink="/">
+            <svg version="1.1" id="ExitIcon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+              viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+              <title>Ir atrás</title>
+              <path class="exit_icon" d="M10,0C4.5,0,0,4.5,0,10s4.5,10,10,10s10-4.5,10-10S15.5,0,10,0z M14.9,15.1c0,0,0,0.1-0.1,0.2
+                c0,0.1-0.1,0.1-0.1,0.2c0,0.1-0.1,0.1-0.1,0.1c-0.1,0.1-0.1,0.1-0.2,0.1c-0.1,0-0.1,0-0.1-0.1c0,0-0.1-0.1-0.1-0.2c0,0,0-0.1,0-0.2
+                c0-0.1,0-0.1,0-0.1c0-0.3,0-0.5,0-0.8c0-0.4,0-0.8-0.1-1.1c-0.1-0.3-0.2-0.6-0.3-0.9c-0.1-0.2-0.3-0.5-0.5-0.6
+                c-0.2-0.2-0.4-0.3-0.7-0.4S12.2,11,11.9,11c-0.3-0.1-0.6-0.1-1-0.1c-0.3,0-0.7,0-1.1,0H8.4v1.6c0,0.1,0,0.2-0.1,0.3
+                c-0.1,0.1-0.2,0.1-0.3,0.1c-0.1,0-0.2,0-0.3-0.1L4.4,9.5C4.4,9.4,4.3,9.3,4.3,9.2s0-0.2,0.1-0.3l3.2-3.2C7.8,5.6,7.9,5.5,8,5.5
+                s0.2,0,0.3,0.1c0.1,0.1,0.1,0.2,0.1,0.3v1.6h1.4c3,0,4.9,0.9,5.5,2.6c0.2,0.6,0.3,1.3,0.3,2.1C15.7,12.9,15.4,13.9,14.9,15.1z"/>
+            </svg>
+          </div>
+          </div>
+      </div>
+    </div>
+    <div class="bg_black"></div>
+    <img [src]="post?.image" alt="post?.title">
+  </div>
+  <!--MINUTOS LECTURA-->
+  <div class="lectura">  
+    <div class="row">
+      <div class="col-md-12">
+        <div class="lectura_inside" [ngStyle]="{'width': width}">
+        </div>
+      </div>  
+      <div class="container col-md-12 txt">
+        <p>{{(post?.content) | toString | toReadTime}}</p>
+      </div>
+      <div class="bg_white"></div>
+    </div>
+  
+  </div>
+</header>

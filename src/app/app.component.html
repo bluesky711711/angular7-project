@@ -1,0 +1,7 @@
+<ng-progress [color]="'#002ed2'"></ng-progress>
+<app-menu-mobile *ngIf="menu_mobile" (hide_menu)="hideMenu($event)"></app-menu-mobile>
+<app-header-nav *ngIf="!menu_mobile" (show_menu)="showMenu($event)"></app-header-nav>
+<div [@routeAnimation]="o.isActivated && o.activatedRoute.routeConfig.path">
+    <router-outlet #o="outlet"></router-outlet>
+</div>
+<app-footer *ngIf="!menu_mobile"></app-footer>

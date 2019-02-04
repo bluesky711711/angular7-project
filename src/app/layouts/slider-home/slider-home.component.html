@@ -1,0 +1,84 @@
+<div *ngIf="showSpinner; then loading else content"></div>
+<ng-template #loading>
+  <app-loading-spinner></app-loading-spinner>
+</ng-template>
+<ng-template #content>
+  <div id="main-slider" *ngFor="let post of post$ | async; let i = index">
+    <div class="img_inside-slider">
+      <img [src]="!post.image?portada:post.image" alt="post.title" class="desk">
+      <img [src]="!post.thumbnails?portada:post.thumbnails[1010]" alt="post.title" class="mobile">
+    </div>
+    <div class="gradient-bg">
+    </div>
+
+    <!--Imagen de Fondo Slider-->
+    <div class="container" id="content-slider">
+      <div class="row">
+        <!--Artículo Principal-->
+        <div class="col-md-9" id="articulo-slider">
+
+          <!--Tag-->
+          <app-category-tag [post]="post" data-aos="fade-right" data-aos-duration="500" data-aos-once="true"></app-category-tag>
+          <!--Contenido Artículo-->
+          <div class="txt" data-aos="fade-right" data-aos-duration="700">
+            <h1><a [routerLink]="['/post',post.category,post.uid]" style="cursor:pointer;">{{ post.title }}</a></h1>
+            <p><a [routerLink]="['/post',post.category,post.uid]" style="cursor:pointer;">{{ post.description }}</a></p>
+          </div>
+          <!--Detalles-->
+          <div class="resume-cont flex-pd fs" data-aos="fade-right" data-aos-duration="900" data-aos-once="true">
+            <div class="avatar">
+              <img [src]="post.user?.photoURL" alt="post.user?.displayName">
+            </div>
+            <div class="detalles">
+              <p>
+                <a [routerLink]="['/editor',post.user.uid,'posts']">{{post.user?.displayName}}</a> · {{post.createdAt
+                | toDate | amLocale: 'es' | amTimeAgo}}
+              </p>
+              <p>{{post.content | toString | toReadTime}}</p>
+            </div>
+          </div>
+          <!--Compartir-->
+          <div id="compartir-slider" data-aos="fade-right" data-aos-duration="1000" data-aos-once="true">
+            <div class="txt">
+              <p>Compartir</p>
+            </div>
+            <div class="redes">
+              <div class="red">
+                <a href="#" aria-label="facebook"><i class="fa fa-facebook-square"></i></a>
+              </div>
+              <div class="red">
+                <a href="#" aria-label="linkedin"><i class="fa fa-linkedin-square"></i></a>
+              </div>
+              <div class="red">
+                <a href="#" aria-label="twitter"><i class="fa fa-twitter"></i></a>
+              </div>
+              <div class="red">
+                <a (click)="copyURL(post.uid)" style="cursor: pointer;" title="Copiar Link"><i class="fa fa-link"></i></a>
+              </div>
+              <div class="red">
+                <a (click)="setBookmark(post.uid)" *ngIf="!bookmark" style="cursor: pointer;" title="Guardar articulo"><i
+                    class="fa fa-bookmark-o"></i></a>
+                <a (click)="delBookmark(post.uid)" *ngIf="bookmark" style="cursor: pointer;" title="Eliminar articulo"><i
+                    class="fa fa-bookmark"></i></a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!--Más Leidos-->
+
+        <div class="col-md-3 npd desk" id="tendencias-slider">
+          <app-more-read-home></app-more-read-home>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="container mobile" id="container-ts-mb">
+    <div class="row mobile">
+      <div class="col-md-3 npd mobile" id="tendencias-slider">
+        <app-more-read-home></app-more-read-home>
+      </div>
+    </div>
+  </div> -->
+</ng-template>

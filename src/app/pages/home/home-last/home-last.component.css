@@ -1,0 +1,10 @@
+/*Título*/
+.first_title {
+    margin-bottom: 20px;
+}
+
+@media (max-width: 490px) {
+	.first_title {
+		margin-bottom: 0;
+	}
+}

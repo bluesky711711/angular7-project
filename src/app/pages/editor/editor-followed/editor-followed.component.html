@@ -1,0 +1,30 @@
+<div class="row">
+
+<div class="col-md-4" id="redactores_home" appScrollable (scrollPosition)="scrollHandler($event)">
+  <!--Título-->
+  <div class="second_title">
+    <h3>Seguidos</h3>
+  </div>
+
+  <!--Item 1-->
+  <div class="item followed" *ngFor="let follow of page.data | async; let i = index">
+    <div class="imagen">
+      <img [src]="(editors[i] | async)?.photoURL">
+    </div>
+
+    <div class="txt">
+      <div class="subtitle">
+        <p class="nombre">
+          <a href="#">{{(editors[i] | async)?.displayName}}</a>
+        </p>
+        <p class="cargo">
+          <a href="#">{{((editors[i] | async)?.position | toPosition | async)?.value}}</a>
+        </p>
+      </div>
+      <button (click)="follow(editorId[i], i)" *ngIf="followed[i] !== editorId[i]" class="white">Seguir</button>
+      <button (click)="unFollow(editorId[i], i)" *ngIf="followed[i] === editorId[i]" class="btn_unfollow">Dejar de seguir</button>
+    </div>
+  </div>
+</div>
+
+</div>

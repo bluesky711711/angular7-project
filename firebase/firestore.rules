@@ -1,0 +1,64 @@
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read;
+    }
+    
+    match /posts/{document} {
+      allow update: if isOwner(request.resource.data.user.uid) ||
+      request.resource.data.title == resource.data.title &&
+      request.resource.data.content == resource.data.content &&
+      request.resource.data.category == resource.data.category &&
+      request.resource.data.description == resource.data.description &&
+      request.resource.data.uid == resource.data.uid;
+      allow create: if getRole('contributor') == true;
+      // allow update: if getRole('contributor') == true;
+      allow write: if getRole('admin') == true || getRole('editor') == true;
+    }
+
+    match /users/{document} {
+      allow update: if isOwner(document) || 
+      request.resource.data.displayName == resource.data.displayName &&
+      request.resource.data.email == resource.data.email &&
+      request.resource.data.photoURL == resource.data.photoURL &&
+      request.resource.data.uid == resource.data.uid;
+      allow create: if request.resource.data.roles.keys().hasAny(['admin', 'editor', 'contributor']) == false;
+      allow write: if getRole('admin') == true;
+    }
+    
+    match /relationships/{document} {
+      allow write: if isSignedIn(); 
+    }
+    
+    match /bookmarks/{document} {
+      allow write: if isSignedIn(); 
+    }
+    
+    match /relationshipTopic/{document} {
+      allow write: if isSignedIn(); 
+    }
+    
+    match /categories/{document} {
+      allow write: if getRole('admin') == true || getRole('editor') == true;
+    }
+    
+    match /tags/{document} {
+      allow write: if getRole('admin') == true || getRole('editor') == true || getRole('contributor') == true;
+    }
+    
+    // Functions
+    
+    // Devuelve un booleano según el rol solicitado
+  	function getRole(role) {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.roles[role]
+    }
+    // Devuelve un booleano si el usuario esta logeado
+    function isSignedIn() {
+  		return request.auth != null;
+		}
+    // Devuelve un booleano si el userId es el mismo que esta autenticado
+    function isOwner(userId) {
+  		return request.auth.uid == userId
+		}
+  }
+}

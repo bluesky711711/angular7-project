@@ -1,0 +1,45 @@
+<div class="row scroll-container" appScrollable (scrollPosition)="scrollHandler($event)"> 
+    <div class="col no-pad">
+        <!-- Title-->
+        <div class="first_title">
+            <h2>Lo último</h2>
+        </div>
+    
+        <!--Item-->
+        <!-- <ng-container *ngIf="infinite | async as posts">
+            <cdk-virtual-scroll-viewport itemSize="150" (scrolledIndexChange)="nextBatch($event, (posts[posts.length - 1].createdAt))">
+                <ng-container *cdkVirtualFor="let p of posts; let i = index; trackBy: trackByIdx" class="animated fadeInRight">
+                    <app-item-post [post]="p"></app-item-post>
+                </ng-container>
+                <div class="scroll" *ngIf="theEnd">
+                    <div class="txt">
+                        <p>Fin de los post</p>
+                    </div>
+                </div>
+            </cdk-virtual-scroll-viewport>
+        </ng-container> -->
+        <!--fin Item-->
+
+        <!--Item-->
+        <ng-container *ngFor="let post of page.data | async; let i = index; trackBy: trackByIdx">
+            <app-item-post [post]="post"></app-item-post>
+        </ng-container>
+        <!--fin Item-->
+
+        <!--Scroll Down-->
+        <div *ngIf="(page.data | async)?.length > 9; then scroll"></div>
+        <ng-template #scroll>
+            <div class="scroll" *ngIf="!page.done | async">
+                <div class="txt">
+                    <p>Scroll Down para cargar más artículos</p>
+                </div>
+            </div>
+            <!-- <app-loading-spinner *ngIf="page.loading | async"></app-loading-spinner> -->
+            <div class="scroll" *ngIf="page.done | async">
+                <div class="txt">
+                    <p>Fin de los post</p>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+</div>

@@ -1,0 +1,106 @@
+<div>
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+  </mat-form-field>
+</div>
+<div class="mat-elevation-z8">
+  <mat-table [dataSource]="dataSource" matSort class="animate">
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="uid">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="datatable"> ID </mat-header-cell>
+      <mat-cell *matCellDef="let row" class="datatable"> {{row.uid}} </mat-cell>
+    </ng-container>
+
+    <!-- Estado Column -->
+    <ng-container matColumnDef="state">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="datatable"> Estado </mat-header-cell>      
+      <mat-cell *matCellDef="let row" class="datatable"> 
+          <button mat-mini-fab color="accent" (click)="aprobPost(row.uid, row.state)" *ngIf="row.state == 'aprobado'">
+            <fa-icon icon="check" title="Aprobado"></fa-icon>
+          </button>
+          <button mat-mini-fab class="pendiente" (click)="aprobPost(row.uid, row.state)" *ngIf="row.state == 'pendiente'">
+            <fa-icon icon="pause" title="Pendiente"></fa-icon>
+          </button>
+          <button mat-mini-fab color="warn" (click)="aprobPost(row.uid, row.state)" *ngIf="row.state == 'declinado'">
+            <fa-icon icon="times" title="Declinado"></fa-icon>
+          </button>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Recomendado Column -->
+    <ng-container matColumnDef="recommended">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="datatable"> Recomendado </mat-header-cell>      
+      <mat-cell *matCellDef="let row" class="datatable"> 
+        <button mat-mini-fab color="accent" (click)="aprobPost(row.uid, row.state)" *ngIf="row.recommended">
+          <fa-icon icon="award" title="Recomendado"></fa-icon>
+        </button>
+        <button mat-mini-fab class="pendiente" (click)="aprobPost(row.uid, row.state)" *ngIf="!row.recommended">
+          <fa-icon icon="award" title="Recomendado"></fa-icon>
+        </button>
+        <!-- <mat-chip-list>
+          <mat-chip [color]="row.recommended ? 'accent': 'disabled'" (click)="recommendPost(row.uid, row.recommended)" style="cursor:pointer" selected>Recomendado</mat-chip> 
+        </mat-chip-list> -->
+      </mat-cell>
+    </ng-container>
+
+    <!-- Home Post Column -->
+    <ng-container matColumnDef="homePost">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="datatable"> Home post </mat-header-cell>      
+      <mat-cell *matCellDef="let row" class="datatable">
+        <button mat-mini-fab color="accent" (click)="setHomePost(row.uid, row.homePost)" *ngIf="row.homePost">
+          <fa-icon icon="home" title="Home Post"></fa-icon>
+        </button>
+        <button mat-mini-fab class="pendiente" (click)="setHomePost(row.uid, row.homePost)" *ngIf="!row.homePost">
+          <fa-icon icon="home" title="Home Post"></fa-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Fecha Column -->
+    <ng-container matColumnDef="createdAt">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="datatable"> Fecha </mat-header-cell>
+      <mat-cell *matCellDef="let row" class="datatable"> {{row.createdAt | toDate | amLocale: 'es' | amDateFormat:'ll'}} </mat-cell>
+    </ng-container>
+
+    <!-- Categoria Column -->
+    <ng-container matColumnDef="category">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="datatable"> Categoria </mat-header-cell>
+      <mat-cell *matCellDef="let row" class="datatable"> {{row.category}} </mat-cell>
+    </ng-container>
+
+    <!-- Editor Column -->
+    <ng-container matColumnDef="editor">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="datatable"> Editor </mat-header-cell>
+      <mat-cell *matCellDef="let row" class="datatable"> {{row.user.displayName}} </mat-cell>
+    </ng-container>
+
+    <!-- Titulo Column -->
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="datatable"> Titulo </mat-header-cell>
+      <mat-cell *matCellDef="let row" class="datatable"> {{row.title}} </mat-cell>
+    </ng-container>
+
+    <!-- Vistas Column -->
+    <ng-container matColumnDef="postCount">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="datatable"> Visitas </mat-header-cell>
+      <mat-cell *matCellDef="let row" class="datatable"> {{row.visitCount}} </mat-cell>
+    </ng-container>
+
+    <!-- Acciones Column -->
+    <ng-container matColumnDef="acciones">
+      <mat-header-cell *matHeaderCellDef class="datatable"> Acciones </mat-header-cell>
+      <mat-cell *matCellDef="let row" class="datatable">
+        <!-- <button mat-raised-button color="accent" (click)="aprobPost(row.uid, row.state)">Estado</button> -->
+        <button mat-mini-fab color="primary" [routerLink]="['/post-editor',row.uid]"><fa-icon icon="edit" title="Editar"></fa-icon></button>
+        <button mat-mini-fab color="warn" (click)="delPost(row.uid)"><fa-icon icon="times" title="Eliminar"></fa-icon></button>
+        
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[50, 80, 100]"></mat-paginator>
+</div>

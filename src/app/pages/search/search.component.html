@@ -1,0 +1,24 @@
+<div class="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md"></div>
+      <mat-form-field style="width: 100%" class="search_now">
+        <input matInput placeholder="Buscar" [(ngModel)]="term" id="buscar" (ngModelChange)="onkeyup($event)">
+      </mat-form-field>
+      <div class="col-md"></div>
+    </div>
+    <div class="title result" *ngIf="term">
+      <h3>Resultados para {{term}}</h3>
+    </div>
+    
+    <!--Item-->
+    <ng-container *ngFor="let post of results$ | async; let i = index; trackBy: trackByIdx">
+      <app-item-post [post]="post" *ngIf="post.state=='aprobado'"></app-item-post>
+    </ng-container>
+    <!--fin Item-->
+
+
+
+
+  </div>
+</div>

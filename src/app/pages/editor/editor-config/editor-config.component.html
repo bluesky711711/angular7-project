@@ -1,0 +1,58 @@
+<div *ngIf="editor | async as editor">
+  <form (ngSubmit)="dataEditor(dataEditorForm.value)" [formGroup]="dataEditorForm" class="row">
+
+    <div class="second_title col-md-12">
+      <h3>Datos Generales</h3>
+    </div>
+
+    <div class="col-md-3 item">
+        <app-age-range-selector (age)="changeAge($event)" [ageExt]="editor.age"></app-age-range-selector>
+    </div>
+    <div class="col-md-3 item">
+        <app-occupation-selector (occupation)="changeOccupation($event)" [occupationExt]="editor.occupation"></app-occupation-selector>
+    </div>
+    <div class="col-md-3 item">
+        <app-position-selector (position)="changePosition($event)" [positionExt]="editor.position"></app-position-selector>
+    </div>
+    <div class="col-md-3 item">
+      <mat-form-field style="width: 100%">
+        <input matInput placeholder="Descripción corta" formControlName="description">
+      </mat-form-field>
+    </div>
+    <br>
+    <div class="col-md-12 item">
+      <mat-form-field style="width: 100%">  
+        <textarea matInput
+                  cdkTextareaAutosize
+                  #autosize="cdkTextareaAutosize"
+                  cdkAutosizeMinRows="2" 
+                  placeholder="Descripción larga" 
+                  formControlName="description_long"></textarea>
+      </mat-form-field>
+    </div>
+    <hr>
+
+    <div class="second_title col-md-12 mg-top">
+      <h3>Redes Sociales</h3>
+    </div>
+
+    <div class="col-md-3 item">
+      <mat-form-field>
+        <input matInput placeholder="Facebook" formControlName="facebook">
+      </mat-form-field>
+    </div>
+    <div class="col-md-3 item">
+      <mat-form-field>
+        <input matInput placeholder="Twitter" formControlName="twitter">
+      </mat-form-field>
+    </div>
+    <div class="col-md-3 item">
+      <mat-form-field>
+        <input matInput placeholder="LinkedIn" formControlName="linkedin">
+      </mat-form-field>
+    </div>
+    <div class="col-md-12 item">
+      <button mat-raised-button color="accent" type="submit" [disabled]="!dataEditorForm.valid">Guardar</button>
+    </div>
+  </form>
+</div>

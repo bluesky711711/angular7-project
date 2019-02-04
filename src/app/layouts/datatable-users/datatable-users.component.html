@@ -1,0 +1,46 @@
+<!-- <button mat-raised-button color="accent" (click)="addOne()">Add Hacker to Firestore</button> -->
+
+<div>
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+  </mat-form-field>
+</div>
+<div class="mat-elevation-z8">
+  <mat-table [dataSource]="dataSource" matSort class="animate"> 
+
+    <!-- ID Column -->
+    <!-- <ng-container matColumnDef="uid">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.uid}} </mat-cell>
+    </ng-container> -->
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="displayName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="datatable"> Nombre </mat-header-cell>
+      <mat-cell *matCellDef="let row" class="datatable"> {{row.displayName}} </mat-cell>
+    </ng-container>
+
+    <!-- Email Column -->
+    <ng-container matColumnDef="email" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header  class="datatable"> Email </mat-header-cell>
+      <mat-cell *matCellDef="let row" class="datatable"> {{row.email}} </mat-cell>
+    </ng-container>
+
+    <!-- Acciones Column -->
+    <ng-container matColumnDef="acciones">
+      <mat-header-cell *matHeaderCellDef class="datatable"> Acciones </mat-header-cell>
+      <mat-cell *matCellDef="let row" class="datatable">
+        <button mat-mini-fab [color]="row.roles.admin? 'primary' : 'warn'" (click)="updateRol('admin',row)"><fa-icon icon="user-cog" title="Admin"></fa-icon>
+</button>
+        <button mat-mini-fab [color]="row.roles.editor? 'primary' : 'warn'" (click)="updateRol('editor',row)"><fa-icon icon="user-check" title="Editor"></fa-icon></button>
+        <button mat-mini-fab [color]="row.roles.contributor? 'primary' : 'warn'" (click)="updateRol('contributor',row)"><fa-icon icon="user-edit" title="Contribuidor"></fa-icon></button>
+        <button mat-mini-fab [color]="row.roles.subscriber? 'primary' : 'warn'" (click)="updateRol('subscriber',row)"><fa-icon icon="user" title="Suscriptor"></fa-icon></button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[25, 50, 100]"></mat-paginator>
+</div>

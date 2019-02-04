@@ -1,0 +1,58 @@
+<div class="content" *ngIf="user$ | async as user">
+
+    <!--DATOS EDITOR-->
+    <div class="container datos_ue">
+        <div class="row">
+
+            <!--Imagen de Perfil-->
+            <div class="col-md-2">
+                <div class="resume-cont profile flex-pd fs" data-aos="fade-in" data-aos-duration="2000" data-aos-once="true">
+                    <div class="avatar">
+                        <img [src]="(user.uid | toUser | async)?.photoURL">
+                    </div>
+                </div>
+            </div>
+
+            <!--Información Principal-->
+            <div class="col-md-10 flex-pd fs display_name">
+
+                <!--Texto -->
+                <div class="name" data-aos="fade-right" data-aos-duration="700" data-aos-once="true">
+                    <h1>{{user.displayName}}</h1>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- CONTENIDO EDITOR -->
+    <div class="container" id="datos_profile">
+        <div class="row">
+            <div class="modify_wdt">
+                <div class="menu_vertical">
+                    <ul>
+                        <li *ngIf="userLogged===userId">
+                            <a routerLinkActive="active" [routerLink]="['/user',userId,'foryou']">Para ti</a>
+                        </li>
+                        <li *ngIf="userLogged===userId">
+                            <a routerLinkActive="active" [routerLink]="['/user',userId,'bookmarks']">Guardados</a>
+                        </li>
+                        <li *ngIf="userLogged===userId">
+                            <a routerLinkActive="active" [routerLink]="['/user',userId,'followed']">Seguidos</a>
+                        </li>
+                        <li *ngIf="userLogged===userId">
+                            <a routerLinkActive="active" [routerLink]="['/topics']">Mis intereses</a>
+                        </li>
+                        <!-- <li *ngIf="userLogged===userId">
+                            <a routerLinkActive="active" [routerLink]="['/user',userId,'config']">Configuración</a>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+            <div [@routeAnimations]="o.isActivated && o.activatedRoute.routeConfig.path" class="col modify-col">
+                <router-outlet #o="outlet"></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>

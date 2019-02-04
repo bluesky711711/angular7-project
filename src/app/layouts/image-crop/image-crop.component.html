@@ -1,0 +1,67 @@
+<!--SLIDER -->
+<div class="general_slider-pd edit" [ngClass]="{move_edit: edit_image}">
+  <div class="img_inside-slider edit">
+    <div class="black_bg"></div>
+    <img [(src)]="data.image?data.image:imageURL?imageURL:portada" width="100%" height="650px">
+  </div>
+
+  <!--Imagen de Fondo Slider-->
+  <div class="container content-slider">
+    <div class="row">
+      <!--Artículo Principal-->
+      <div class="col-md-10 articulo-slider">
+        
+        <!--Detalles-->
+        <div class="edit flex-pd fs" data-aos="fade-right" data-aos-duration="900" data-aos-once="true">
+
+          <div class="container_btn">
+            <button (click)="editImage()" style="cursor: pointer;" type="button">Editar Portada</button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-md">
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!--IMAGEN EDITOR-->
+<div class="edit_img" *ngIf="edit_image">
+
+  <div class="subtitle">
+    <p>Escoge la imagen que deseas como portada</p>
+    <img (click)="editImage()" src="/assets/svg/exit_icon-blue.svg" alt="Cerrar">
+  </div>
+
+  <div class="img">
+    <img-cropper #cropper [image]="data" [settings]="cropperSettings"></img-cropper>
+  </div>
+
+  <div class="botones">
+    <div class="buttons">
+      <button (click)="chargeImage()" style="cursor: pointer;" type="button">Cargar imagen</button>
+      <input id="custom-input" type="file" (change)="fileChangeListener($event)" style="display:none">
+      <button (click)="editImage()" style="cursor: pointer;" type="button">Hecho</button>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- <div class="file-upload">
+  <input id="custom-input" type="file" (change)="fileChangeListener($event)">
+</div>
+<img-cropper #cropper [image]="data" [settings]="cropperSettings"></img-cropper>
+<img [(src)]="data.image?data.image:imageURL?imageURL:portada" width="100%" height="650px"> -->
+<!-- <div *ngIf="percentage | async as pct">
+  <progress class="progress is-info" [value]="pct" max="100">
+  </progress>
+  {{ pct | number }}%
+</div>
+<div *ngIf="snapshot | async as snap">
+  {{ snap.bytesTransferred | fileSize }} of {{ snap.totalBytes | fileSize }}  
+</div> -->

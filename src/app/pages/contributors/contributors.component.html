@@ -1,0 +1,23 @@
+<div class="content">
+  <div class="row">
+    <div class="item" *ngFor="let editor of editors$ | async; let i = index" [ngClass]="class[i]" data-aos="fade-in"
+      data-aos-duration="500" data-aos-once="true">
+      <div class="imagen" [routerLink]="['/editor',editor.uid,'posts']" (mouseover)="class[i]='active'" (mouseout)="class[i]=''"
+        style="cursor: pointer;">
+        <img [src]="editor.photoURL">
+      </div>
+      <div class="txt" (mouseover)="class[i]='active'" (mouseout)="class[i]=''">
+        <div class="subtitle">
+          <p class="nombre">
+            <a [routerLink]="['/editor',editor.uid,'posts']">{{editor.displayName}}</a>
+          </p>
+        </div>
+        <p class="vistas">
+          {{editor.visitCount | toNumber}} de vistas
+        </p>
+        <button (click)="follow(editor.uid, i)" *ngIf="followed[i] !== editor.uid" class="white">Seguir</button>
+        <button (click)="unFollow(editor.uid, i)" *ngIf="followed[i] === editor.uid" class="btn_unfollow">Dejar de seguir</button>
+      </div>
+    </div>
+  </div>
+</div>

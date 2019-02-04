@@ -1,0 +1,28 @@
+<div class="content mg-top_pls">
+    <div class="container">
+        <!--Menú-->
+        <div class="row">
+            <div class="modify_wdt">
+                <div class="menu_vertical">
+                    <ul>
+                        <li>
+                            <a routerLinkActive="active" routerLink="/admin/users">Usuarios</a>
+                        </li>
+                        <li>
+                            <a routerLinkActive="active" routerLink="/admin/posts">Posts</a>
+                        </li>
+                        <li>
+                            <a routerLinkActive="active" routerLink="/admin/categories">Categorias</a>
+                        </li>
+                        <li>
+                            <a routerLinkActive="active" routerLink="/admin/tags">Tag</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>

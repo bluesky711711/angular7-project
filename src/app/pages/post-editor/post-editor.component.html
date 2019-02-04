@@ -1,0 +1,175 @@
+<!-- NUEVO POST -->
+<div class="content" *ngIf="!post">
+  <form (ngSubmit)="newPost(newPostForm.value)" [formGroup]="newPostForm">
+    <app-image-crop (imageOut)="changeImage($event,newPostForm.value)" (imageName)="imageName($event)" (imageEdit)="editImage($event)"></app-image-crop>
+    <!--Imagen de Fondo Slider-->
+    <div class="container content-slider" [ngClass]="{move_edit: edit_image}">
+      <div class="row">
+        <!--Artículo Principal-->
+        <div class="col-md-10 articulo-slider">
+          <!--Category-->
+          <div *ngIf="show_category; then edit_category else show"></div>
+          <ng-template #show>
+          <div class="categoria" [ngClass]="class" data-aos="fade-right" data-aos-duration="500" data-aos-once="true" >
+            <a>{{subcategory_value}}</a>
+            <mat-icon (click)="editCategory(show_category)" style="cursor: pointer" class="icon-pd">create</mat-icon>
+          </div>
+          </ng-template >
+          <ng-template #edit_category>
+            <app-category-selector (category)="changeCategory($event)"></app-category-selector>
+          </ng-template>
+          <!--Contenido Artículo-->
+          <div class="txt profile" data-aos="fade-right" data-aos-duration="700">
+            <textarea matInput placeholder="Titulo" formControlName="title" class="title" #title_input></textarea>
+            <p *ngIf="title_input.value.length <= 70">Tienes {{ 70 - title_input.value.length }} letras para el titulo</p>
+            <p *ngIf="title_input.value.length > 70" style="color:red">Te pasaste {{ title_input.value.length - 70 }} letras para
+              el titulo</p>
+            <p>{{ date | amLocale: 'es' | amDateFormat:'MMM D - YYYY' }}</p>
+          </div>
+        </div>    
+        <div class="col-md">
+        </div>    
+      </div>
+    </div>
+    <!--TAGS-->
+    <div class="container tags">
+      <div class="row">
+        <div class="col-md"></div>
+        <div class="col-md-8">
+          <div class="contenedor_edit">
+            <app-tag-chip (tagsOut)="changeTags($event)"></app-tag-chip>
+          </div>
+        </div>
+        <div class="col-md"></div>
+      </div>
+    </div>
+    <!-- URL - DESCRIPCIÓN -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md"></div>
+        <div class="col-md-8">
+          <mat-form-field style="width: 100%">
+            <input matInput placeholder="URL" formControlName="url" [value]="title_input.value | toURL">
+          </mat-form-field>
+          <mat-form-field style="width: 100%">
+            <input matInput placeholder="Descripcion" formControlName="description" #description_input>
+          </mat-form-field>
+          <p *ngIf="description_input.value.length <= 160" class="ad_letras">Tienes {{ 160 - description_input.value.length }} letras para la
+            descripción</p>
+          <p *ngIf="description_input.value.length > 160" style="color:red" class="ad_letras">Te pasaste {{ description_input.value.length - 160 }}
+            letras para la descripción</p>
+        </div>
+        <div class="col-md"></div>
+      </div>
+    </div>
+      <!--EDITOR-->
+      <div class="container">
+        <div class="row">
+          <div class="col-md"></div>
+          <div class="col-md-8">
+            <div class="contenido_edit">
+              <textarea matInput [froalaEditor]="options" formControlName="content" cdkAutosizeMinRows="15"></textarea>
+            </div>
+          </div>
+          <div class="col-md"></div>
+        </div>
+      </div>
+      <!--FINALIZAR-->
+      <div class="container">
+        <div class="row">
+          <div class="col-md"></div>
+          <div class="col-md-8">
+            <div>
+              <button type="button" (click)="setPost()" [disabled]="!newPostForm.valid">Guardar</button>
+            </div>
+          </div>
+          <div class="col-md"></div>
+        </div>
+    </div>
+  </form>
+</div>
+
+<!-- EDITAR POST -->
+<div class="content" *ngIf="post | async as post">
+  <form (ngSubmit)="newPost(newPostForm.value)" [formGroup]="newPostForm">
+    <app-image-crop (imageOut)="changeImage($event,newPostForm.value)" (imageName)="imageName($event)" (imageEdit)="editImage($event)"></app-image-crop>
+    <!--Imagen de Fondo Slider-->
+    <div class="container content-slider" [ngClass]="{move_edit: edit_image}">
+      <div class="row">
+        <!--Artículo Principal-->
+        <div class="col-md-10 articulo-slider">
+          <!--Category-->
+          <div *ngIf="show_category; then edit_category else show"></div>
+          <ng-template #show>
+            <div class="categoria" [ngClass]="class" data-aos="fade-right" data-aos-duration="500" data-aos-once="true">
+              <a href="#">{{subcategory_value}}</a>
+              <mat-icon (click)="editCategory(show_category)" style="cursor: pointer" class="icon-pd">create</mat-icon>
+            </div>
+          </ng-template>
+          <ng-template #edit_category>
+            <app-category-selector (category)="changeCategory($event)"></app-category-selector>
+          </ng-template>
+          <!--Contenido Artículo-->
+          <div class="txt profile" data-aos="fade-right" data-aos-duration="700">
+            <textarea matInput placeholder="Titulo" formControlName="title" class="title" #title_input></textarea>
+            <p *ngIf="title_input.value.length <= 70">Tienes {{ 70 - title_input.value.length }} letras para el titulo</p>
+            <p *ngIf="title_input.value.length > 70" style="color:red">Te pasaste {{ title_input.value.length - 70 }} letras para
+              el titulo</p>
+            <p>{{ date | toDate | amLocale: 'es' | amDateFormat:'MMM D - YYYY' }}, Editado: {{ dateUpd  | amLocale: 'es' | amDateFormat:'MMM D - YYYY' }}</p>
+          </div>
+        </div>
+        <div class="col-md">
+        </div>
+      </div>
+    </div>
+    <!--TAGS-->
+    <div class="container tags">
+      <div class="row">
+        <div class="col-md"></div>
+        <div class="col-md-10">
+          <div class="contenedor_edit">
+            <app-tag-chip (tagsOut)="changeTags($event)" [tags]="post.tags"></app-tag-chip>
+          </div>
+        </div>
+        <div class="col-md"></div>
+      </div>
+    </div>
+      <!-- URL - DESCRIPCIÓN -->
+    <div class="container">
+      <mat-form-field style="width: 100%">
+        <input matInput placeholder="URL" formControlName="url" disabled readonly>
+      </mat-form-field>
+      <mat-form-field style="width: 100%">
+        <input matInput placeholder="Descripcion" formControlName="description" #description_input>
+      </mat-form-field>
+      <p *ngIf="description_input.value.length <= 160">Tienes {{ 160 - description_input.value.length }} letras para la
+        descripción</p>
+      <p *ngIf="description_input.value.length > 160" style="color:red">Te pasaste {{ description_input.value.length - 160 }}
+        letras para la descripción</p>
+    </div>
+    <!--EDITOR-->
+    <div class="container">
+      <div class="row">
+        <div class="col-md"></div>
+        <div class="col-md-8">
+          <div class="contenido_edit">
+            <textarea matInput [froalaEditor]="options" formControlName="content" cdkAutosizeMinRows="15" [(froalaModel)]="imgObj"></textarea>
+          </div>
+        </div>
+        <div class="col-md"></div>
+      </div>
+    </div>
+    <!--FINALIZAR-->
+    <div class="container">
+      <div class="row">
+        <div class="col-md"></div>
+        <div class="col-md-8">
+          <div>
+            <button type="button" (click)="setPost()" [disabled]="!newPostForm.valid">Guardar</button>
+          </div>
+        </div>
+        <div class="col-md"></div>
+      </div>
+    </div>
+  </form>
+</div>

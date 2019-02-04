@@ -1,0 +1,111 @@
+/* TRENDING NOW
+#trending_now .title {
+	width: 200px;
+}
+
+#trending_now .title p {
+    font-family: Lato;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    font-size: 15px !important;
+    letter-spacing: 0 !important;
+    text-align: center;
+    color: #002ed2;
+    border: 2px solid #002ed2;
+    padding: 5px 0;
+    border-radius: 50px;
+    margin-bottom: 0;
+}
+
+#trending_now .txt a:hover {
+    color: #a9acc3 !important
+}
+
+#trending_now .txt {
+    width: 87%;
+    margin-left: 2%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#trending_now {
+    height: 40px;
+    margin: 50px auto;
+}
+
+$duration: 50s;
+
+@-webkit-keyframes ticker {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
+  }
+
+  100% {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes ticker {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
+  }
+
+  100% {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+.ticker-wrap {
+  
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+  height: 4rem;
+  padding-left: 100%;
+  box-sizing: content-box;
+
+  .ticker {
+
+    display: inline-block;
+    height: 4rem;
+    line-height: 4rem;  
+    white-space: nowrap;
+    padding-right: 100%;
+    box-sizing: content-box;
+
+    -webkit-animation-iteration-count: infinite; 
+            animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+            animation-timing-function: linear;
+   -webkit-animation-name: ticker;
+           animation-name: ticker;
+    -webkit-animation-duration: $duration;
+            animation-duration: $duration;
+    
+
+    &__item {
+        display: inline-block;
+        padding: 0 1rem;
+        font-family: Lato;
+        font-size: 15px !important;
+        letter-spacing: 0 !important;
+        margin-bottom: 0;
+
+    }
+
+  }
+
+}
+
+@media(max-width: 800px) {
+  #trending_now {
+    display: none!important;
+  }
+} */

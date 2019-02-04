@@ -1,0 +1,9 @@
+.bookmark-pd {
+    position: absolute;
+    right: 15px;
+	top: 15px;
+	box-shadow: 0 3px 15px #1a31ca45;
+	-moz-box-shadow: 0 3px 15px #1a31ca45;
+	-o-box-shadow: 0 3px 15px #1a31ca45;
+	z-index: 5;
+}

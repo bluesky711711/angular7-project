@@ -1,0 +1,63 @@
+<div id="content_rec">
+  <ng-container *ngFor="let post of posts$ | async; let i = index">
+    <div class="articulo art_uno" *ngIf="i == 0">
+      <div class="img_inside">
+        <img [src]="post.thumbnails[1010]" alt="post.title" *ngIf="post.thumbnails[1010]">
+        <img [src]="post.image" alt="post.title" *ngIf="!post.thumbnails[1010]">
+      </div>
+      <div class="gradient_bg">
+      </div>
+
+      <div class="content">
+        <app-category-tag [post]="post"></app-category-tag>
+        <div class="txt">
+          <h5>
+            <a [routerLink]="['/post',post.category,post.uid]" style="cursor:pointer;">{{ post.title }}</a>
+          </h5>
+        </div>
+        <div class="resume-cont flex-pd fs">
+          <div class="avatar">
+            <img [src]="post.user?.photoURL" alt="post.user?.displayName">
+          </div>
+          <div class="detalles">
+            <p>
+              <a [routerLink]="['/editor',post.userId,'posts']">{{post.user?.displayName}}</a> ·
+              {{post.createdAt | toDate | amLocale: 'es' | amTimeAgo}}
+            </p>
+            <p>{{post.content | toString | toReadTime}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="articulo art_dos" *ngIf="i > 0">
+      <div class="img_inside">
+        <img [src]="post.thumbnails[1010]" alt="post.title" *ngIf="post.thumbnails[1010]">
+        <img [src]="post.image" alt="post.title" *ngIf="!post.thumbnails[1010]">
+      </div>
+      <div class="gradient_bg">
+      </div>
+
+      <div class="content">
+        <app-category-tag [post]="post"></app-category-tag>
+        <div class="txt">
+          <h5>
+            <a [routerLink]="['/post',post.category,post.uid]" style="cursor:pointer;">{{ post.title }}</a>
+          </h5>
+        </div>
+        <div class="resume-cont flex-pd fs">
+          <div class="avatar">
+            <img [src]="post.user?.photoURL" alt="post.user?.displayName">
+          </div>
+          <div class="detalles">
+            <p>
+              <a [routerLink]="['/editor',post.userId,'posts']">{{post.user?.displayName}}</a> · {{post.createdAt
+              | toDate | amLocale: 'es' | amTimeAgo}}
+            </p>
+            <p>{{post.content | toString | toReadTime}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
